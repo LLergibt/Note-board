@@ -1,68 +1,35 @@
-@import url('https://css.gg/chevron-double-left-r.css');
-@import url('https://css.gg/chevron-double-right-r.css');
-
-* {
-  box-sizing: border-box;
-  }
-
-.layout {
-  display: flex;
-  flex-flow: wrap;
-  flex-direction: row;
-  flex: 1;
+.container {
+  border: 10px solid;
+  display: grid;
+  height:100vh;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+        "sidebar header header header header"
+        "sidebar header header header header"
+        "sidebar content content content content"
+        "sidebar content content content content"
+        "sidebar content content content content";
+}
+.item1 {
 }
 
-.outlet {
-  width: 30%;
-  margin-left: 20%;
-  order: 3;
-}
 .sidebar {
-  background-color: rgb(30, 50, 92);
-  width: 200px;
-  order: 1;
-  height: 500px;
-  border: solid;
-  margin: 0;
+  background: red;
+  grid-area: sidebar;
 }
-.sidebar:hover {
-  background-color: rgb(35, 55, 97);
+.sidebar-hidden {
+  display: none;
 
 }
 .header {
-  width: 20%;
-  display: flex;
-  order: 2;
-  flex-wrap: nowrap;
-  flex: 1;
-}
-.share {
-  width: 100px;
-  margin-left: auto;
-  margin-top: 30px;
+  background-color: black;
+  grid-area: header;
 
 }
-button {
-  box-shadow: none;
-  border: none;
-  padding: 0;
-  background-color: none;
-  border: none;
-}
-.sidebar-button {
-  float: right;
-  margin-right: 20px;
-  background-color: rgb(30, 50, 92);
-  padding-top: 30px;
-}
+.content {
+  background: blue;
+  grid-area: content;
 
-.hidden-sidebar-button {
-  float: none;
-  position: fixed;
-  top: 5px;
-  left: 5px;
-}
-
-.hidden {
-  display: none;
 }
