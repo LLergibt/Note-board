@@ -10,11 +10,8 @@ const Layout = () => {
     })
   }
   return (
-    <div className="container">
+    <div className={hidden? "container container-hidden-sidebar": "container"}>
       <div className={hidden ? 'sidebar-hidden' : "sidebar"}>sidebar
-        <button onClick={onClick}>
-          focalboard
-        </button>
 
         <ul>
           <li>
@@ -31,7 +28,13 @@ const Layout = () => {
           </li>
         </ul>
       </div>
-      <div className="header">header</div>
+      <div className="header">
+
+        <button  className={hidden ? '': 'sidebar-button'} onClick={onClick}>
+        {hidden? <i class="gg-chevron-double-right-r"></i>: <i class="gg-chevron-double-left-r"></i>}
+        </button>
+        header
+    </div>
       <div className="content">content</div>
 
     </div>
