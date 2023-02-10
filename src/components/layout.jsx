@@ -10,6 +10,7 @@ const Layout = () => {
       return !prev
     })
   }
+  console.log(hidden)
   return (
     <div className={hidden? "container container-hidden-sidebar": "container"}>
       <div className={hidden ? 'sidebar-hidden' : "sidebar"}>sidebar
@@ -33,8 +34,8 @@ const Layout = () => {
         </ul>
       </div>
       <div className="header">
-        <button  className={hidden ? 'menu-button': 'sidebar-button button-hidden'} onClick={onClick}>
-        {hidden?  <i className="gg-menu"></i>: <i className="gg-chevron-double-right-r"></i>}
+        <button  className={hidden ? 'menu-button small-screen-hide': 'menu-button button-hidden'} onClick={onClick}>
+        <i className="gg-menu"></i>
         </button>
 
         header
