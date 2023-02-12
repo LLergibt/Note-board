@@ -33,12 +33,19 @@ const Layout = () => {
           </li>
         </ul>
       </div>
-      <div className="header">
+      <div className={hidden? "header": "header header-small"}>
         <button  className={hidden ? 'menu-button small-screen-hide': 'menu-button button-hidden'} onClick={onClick}>
         <i className="gg-menu"></i>
         </button>
 
-        header
+        <h1>
+          Askarate.moscow
+        </h1>
+
+        <button className="share">
+          Поделиться
+        </button>
+
     </div>
       <div className="content">content</div>
 

@@ -16,7 +16,7 @@
 }
 
 .sidebar {
-  background: red;
+  background: rgb(30, 50, 92);
   grid-area: sidebar;
 }
 .sidebar-button {
@@ -42,11 +42,35 @@
 
 }
 .sidebar-hidden {
-  display: none;
+display: none;
 }
 .header {
   background-color: gray;
+  display: grid;
   grid-area: header;
+  grid-template-columns: 1fr 1fr 150px ;
+  grid-template-rows: 10% 20%;
+  grid-template-areas: 
+        "button . ."
+        "title . share";
+
+}
+.header h1 {
+  grid-area: title;
+  margin: 0;
+  margin-left: 40px;
+}
+.header .share {
+  grid-area: share;
+  background: rgb(28, 88, 217);
+  color: white;
+  font-size: .9em;
+  font-weight: bold;
+  border: none;
+  margin-right: 5%;
+}
+.header .menu-button {
+  grid-area: button;
 
 }
 .content {
@@ -64,7 +88,17 @@
           "content content content content content";
   }
   .sidebar {
+
     display: none;
+  }
+  .header {
+    grid-template-columns: 1fr 150px 150px ;
+    grid-template-rows: 20% 20%;
+    grid-template-areas: 
+          "button title ."
+          ". . share";
+  }
+  .header h1 {
   }
   .sidebar-button {
     display: none;
@@ -74,11 +108,6 @@
   }
 
   .container-hidden-sidebar {
-  border: 10px solid;
-  display: grid;
-  height:100vh;
-  grid-template-columns: 250px 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 
         "sidebar header header header header"
         "sidebar content content content content"
