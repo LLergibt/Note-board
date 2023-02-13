@@ -1,4 +1,5 @@
 import React from 'react'
+import {Outlet} from 'react-router-dom';
 import './layout.css'
 import { useState } from 'react'
 const Layout = () => {
@@ -18,20 +19,6 @@ const Layout = () => {
         {hidden?  <i class="gg-menu"></i>: <i class="gg-chevron-double-right-r"></i>}
         </button>
 
-        <ul>
-          <li>
-            fdhvfi
-          </li>
-          <li>
-            dsfsdojf
-          </li>
-          <li>
-            dfdsfsd
-          </li>
-          <li>
-            dfdsfsd
-          </li>
-        </ul>
       </div>
       <div className={hidden? "header": "header header-small"}>
         <button  className={hidden ? 'menu-button small-screen-hide': 'menu-button button-hidden'} onClick={onClick}>
@@ -47,7 +34,10 @@ const Layout = () => {
         </button>
 
     </div>
-      <div className="content">content</div>
+    <div className="content">
+      <Outlet/>
+    </div>
+
 
     </div>
   )

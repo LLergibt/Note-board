@@ -2,17 +2,19 @@
 @import url('https://css.gg/menu.css');
 @import url('https://css.gg/chevron-double-right-r.css');
 .container {
-  border: 10px solid;
   display: grid;
+  border: none;
+  background: none;
   height:100vh;
-  grid-template-columns: 250px 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 250px 1fr 1fr 1fr;
+  gap: 20px;
+  grid-template-rows: 13% 1fr 1fr 1fr;
   grid-template-areas: 
-        "sidebar header header header header"
-        "sidebar content content content content"
-        "sidebar content content content content"
-        "sidebar content content content content"
-        "sidebar content content content content";
+        "sidebar header header header"
+        "sidebar content content content"
+        "sidebar content content content"
+        "sidebar content content content"
+        "sidebar content content content";
 }
 
 .sidebar {
@@ -38,27 +40,30 @@
         "content content content content content"
         "content content content content content"
         "content content content content content"
-        "content content content content content";
 
 }
 .sidebar-hidden {
 display: none;
 }
+button:hover {
+  opacity: 0.60;
+
+}
 .header {
-  background-color: gray;
+  background-color: white;
   display: grid;
   grid-area: header;
   grid-template-columns: 1fr 1fr 150px ;
-  grid-template-rows: 10% 20%;
+  border-bottom: 2px solid gray;
+  grid-template-rows: 10% 30%;
   grid-template-areas: 
         "button . ."
-        "title . share";
+        "title . share"
 
 }
 .header h1 {
   grid-area: title;
   margin: 0;
-  margin-left: 40px;
 }
 .header .share {
   grid-area: share;
@@ -74,7 +79,6 @@ display: none;
 
 }
 .content {
-  background: blue;
   grid-area: content;
 
 }
@@ -93,12 +97,14 @@ display: none;
   }
   .header {
     grid-template-columns: 1fr 150px 150px ;
-    grid-template-rows: 20% 20%;
+    grid-template-rows: 25% 25%;
+    gap: 10px;
     grid-template-areas: 
           "button title ."
           ". . share";
   }
   .header h1 {
+    margin-left: 50px;
   }
   .sidebar-button {
     display: none;
