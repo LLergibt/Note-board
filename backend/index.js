@@ -1,5 +1,5 @@
 import express from 'express';
-import pool from './dbConnect.js'
+import sequelize from './models/dbConnect.js'
 
 const app = express()
 
@@ -10,8 +10,7 @@ app.get('/', (req, res) => {
 
 app.listen(8000, async () => {
   console.log('server is up')
-  let jj =  await pool.query('Select * from gg')
-  console.log(jj.rows)
+  console.log(sequelize.models.User)
 })
 
 export default app
