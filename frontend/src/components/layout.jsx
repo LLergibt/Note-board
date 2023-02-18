@@ -13,6 +13,7 @@ const Layout = () => {
   }
   console.log(hidden)
   return (
+    <>
     <div className={hidden? "container container-hidden-sidebar": "container"}>
       <div className={hidden ? 'sidebar-hidden' : "sidebar"}>sidebar
         <button  className={hidden ? 'sidebar-button button-hidden': 'sidebar-button'} onClick={onClick}>
@@ -40,6 +41,7 @@ const Layout = () => {
 
 
     </div>
+    </>
   )
 }
 export default Layout

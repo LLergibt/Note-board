@@ -1,0 +1,45 @@
+.popup {
+  position: fixed;
+  top: 10%;
+  left: 30vh;
+  right: auto;
+  background: white;
+  width: 75vh;
+  height: 80vh;
+
+}
+.popup-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  opacity: 1;
+  background-color: rgba(0,0,0,0.35);
+}
+.note-property {
+  border: none;
+  background: none;
+  width: 100px;
+  height: 20px;
+}
+.choose {
+  background: blue;
+  font-size: 1.1em;
+}
+.main-modal {
+  margin-left: 20%;
+}
+.note-property:hover {
+  background: gray;
+  border-radius: 1px;
+}
+.dpopup {
+  margin: auto;
+  width: 90%;
+  max-width: 40rem;
+  background-color: white;
+  border-radius: 1.5rem;
+}
