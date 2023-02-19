@@ -1,8 +1,8 @@
 import express from 'express';
-import './models/modelsCreate.js'
-
-
+import createTables from './models/modelsCreate.js'
 const app = express()
+
+await createTables()
 
 
 app.get('/', (req, res) => {
