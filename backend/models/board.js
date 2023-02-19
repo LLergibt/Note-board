@@ -2,10 +2,11 @@ import { Sequelize, Model, DataTypes } from 'sequelize';
 import sequelize from './dbConnect.js';
 
 export const Boards = sequelize.define(
-  'Board',
+  'boards',
   {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
     title: {
@@ -15,11 +16,12 @@ export const Boards = sequelize.define(
   }
 )
 export const Types = sequelize.define(
-  'Type',
+  'types',
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING,

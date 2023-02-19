@@ -10,6 +10,7 @@ export const PropertyTitle = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     type_id: {
       type: DataTypes.INTEGER,
@@ -38,6 +39,7 @@ export const Note = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
     },
     title: {
