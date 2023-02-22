@@ -9,6 +9,7 @@ await createTables()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use('/notes', notes)
+app.use('/auth', auth)
 
 app.get('/', (req, res) => {
 	res.send("<h1>OK</h1>")
