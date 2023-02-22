@@ -1,9 +1,14 @@
 import express from 'express';
 import createTables from './models/modelsCreate.js'
+import {notes} from './api/notes.js'
+import {auth} from './api/auth.js'
 const app = express()
 
 await createTables()
 
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use('/notes', notes)
 
 app.get('/', (req, res) => {
 	res.send("<h1>OK</h1>")
