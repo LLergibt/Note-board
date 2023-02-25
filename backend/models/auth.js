@@ -25,20 +25,8 @@ export const User = sequelize.define(
       allowNull: false,
       unique: true,
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-    },
-    {
-      hooks: {
-          beforeCreate: (user) => {
-            const salt = bcrypt.genSaltSync();
-            user.password = bcrypt.hashSync(user.password, salt);
-            }
     }
 
 
-  }
 )
 

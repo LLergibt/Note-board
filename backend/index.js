@@ -2,6 +2,9 @@ import express from 'express';
 import createTables from './models/modelsCreate.js'
 import {notes} from './api/notes.js'
 import {auth} from './api/auth.js'
+import dotenv from 'dotenv'
+dotenv.config()
+
 const app = express()
 
 await createTables()
