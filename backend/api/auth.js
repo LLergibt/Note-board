@@ -1,14 +1,22 @@
 import express from 'express'
-import {createUser, login, verify} from '../db/auth.js'
+import {createUser, login, verify, verifyEmail} from '../db/auth.js'
+import jwt from 'jsonwebtoken'
 
 
 export const auth = express.Router();
 
 auth.post('/', async function(req, res) {
-  console.log(req.body)
   const user = await createUser(req.body)
   res.status(201)
   res.json(req.body)
+})
+auth.post('/verify-email', async function(req, res) {
+  const token = jwt.sign(req.body, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  })
+  await verifyEmail(req.body.email, token)
+  res.send("email sent")
+
 })
 
 auth.post('/login', async function(req, res) {

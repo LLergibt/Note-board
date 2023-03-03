@@ -1,21 +1,20 @@
 import nodemailer from 'nodemailer'
-export function sendEmail(email, token) {
-    console.log(email)
- 
- 
+
+
+export function sendEmail(email, emailText) {
     const mail = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL_NAME, // Your email id
-            pass: process.env.EMAIL_PASSWORD // Your password
-        }
+            user: process.env.EMAIL_NAME, 
+            pass: process.env.EMAIL_PASSWORD 
+    }
     });
- 
+
     const mailOptions = {
         from: 'ggergibtnaz@gmail.com',
         to: email,
-        subject: 'Email verification - Tutsmake.com',
-        html: '<p>You requested for email verification, kindly use this <a href="http://localhost:8000/auth/verify?token=' + token + '">link</a> to verify your email address</p>'
+        subject: 'Email verification',
+        html: emailText
  
     };
  
@@ -27,3 +26,4 @@ export function sendEmail(email, token) {
         }
     });
 }
+

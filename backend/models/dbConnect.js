@@ -1,4 +1,5 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
+import redis from 'redis'
 
 const sequelize = new Sequelize('notes', 'gosha', 'ggrttr', {
   host: 'localhost',
@@ -12,18 +13,10 @@ const sequelize = new Sequelize('notes', 'gosha', 'ggrttr', {
   }
 }
 );
-const User = sequelize.define(
-  'User',
-  {
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-    },
-  },
-)
-await User.sync()
+export const redisClient = redis.createClient({
+    host:'127.0.0.1',
+    port:6379
+})
+await redisClient.connect();
 
 export default sequelize
