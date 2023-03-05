@@ -1,11 +1,12 @@
 import express from 'express'
 import {createUser, login, verify, verifyEmail} from '../db/auth.js'
+import {verifyCode} from '../middlewares/auth.js'
 import jwt from 'jsonwebtoken'
 
 
 export const auth = express.Router();
 
-auth.post('/', async function(req, res) {
+auth.post('/', verifyCode, async function(req, res) {
   const user = await createUser(req.body)
   res.status(201)
   res.json(req.body)
