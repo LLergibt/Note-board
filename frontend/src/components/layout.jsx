@@ -14,17 +14,14 @@ const Layout = () => {
   console.log(hidden)
   return (
     <>
-    <div className={hidden? "container container-hidden-sidebar": "container"}>
-      <div className={hidden ? 'sidebar-hidden' : "sidebar"}>sidebar
-        <button  className={hidden ? 'sidebar-button button-hidden': 'sidebar-button'} onClick={onClick}>
-        {hidden?  <i class="gg-menu"></i>: <i class="gg-chevron-double-right-r"></i>}
-        </button>
+    <button  className={'gg'} onClick={onClick}>
+    <i className="gg-menu"></i>
+    </button>
+    <div className={hidden? "container hidden-sidebar": "container show-sidebar"}>
+      <div className="sidebar">sidebar
 
       </div>
-      <div className={hidden? "header": "header header-small"}>
-        <button  className={hidden ? 'menu-button small-screen-hide': 'menu-button button-hidden'} onClick={onClick}>
-        <i className="gg-menu"></i>
-        </button>
+      <div className="header">
 
         <h1>
           Askarate.moscow
