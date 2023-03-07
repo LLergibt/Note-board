@@ -31,6 +31,9 @@ export const PropertyTitle = sequelize.define(
 
     }
   },
+  {
+    timestamps: false
+  }
 )
 
 export const Note = sequelize.define(
@@ -54,11 +57,12 @@ export const Note = sequelize.define(
 
 
     },
-    title: {
+    property_data: {
       type: DataTypes.STRING,
     },
     board_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: Boards,
         key: 'id'
@@ -70,3 +74,28 @@ export const Note = sequelize.define(
   }
 )
 
+export const Choose = sequelize.define(
+  'choose',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+    },
+    property_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: PropertyTitle,
+        key: 'id'
+      }
+  }
+  },
+
+  {
+    timestamps: false
+  }
+)

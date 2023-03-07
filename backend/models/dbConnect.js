@@ -5,6 +5,9 @@ const sequelize = new Sequelize('notes', 'gosha', 'ggrttr', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: 0,
+  define: {
+    freezeTableName: true
+  },
   pool: {
     max: 5,
     min: 0,
@@ -12,6 +15,7 @@ const sequelize = new Sequelize('notes', 'gosha', 'ggrttr', {
     idle: 10000
   }
 }
+
 );
 export const redisClient = redis.createClient({
     host:'127.0.0.1',
