@@ -5,11 +5,8 @@ import QueryTypes from 'sequelize'
 import {sendEmail} from '../utils/mailer.js'
 
 export const createUser = async (body) => {
-  const code = await redisClient.get(body.email)
-  if (body.code == code) {
     const user = await User.create(body)
     return user
-  }
 }
 export const verifyEmail = async (email, token) => {
     const code = Math.floor(1000 + (9999 - 1000) * Math.random());
