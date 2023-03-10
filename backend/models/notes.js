@@ -48,18 +48,6 @@ export const Note = sequelize.define(
     title: {
       type: DataTypes.STRING,
     },
-    property_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: PropertyTitle,
-        key: 'id'
-      }
-
-
-    },
-    property_data: {
-      type: DataTypes.STRING,
-    },
     board_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -71,6 +59,36 @@ export const Note = sequelize.define(
     }
 
 
+  }
+)
+export const PropertyNote = sequelize.define(
+  'property_note',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    property_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: PropertyTitle,
+        key: 'id'
+      }
+    },
+    note_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: Note,
+        key: 'id'
+      }
+    },
+    property_data: {
+      type: DataTypes.STRING,
+    },
   }
 )
 
