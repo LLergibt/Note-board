@@ -1,6 +1,6 @@
 import React from 'react';
-import './popup-note.css';
-import PopupProperty from './popupProperty'
+import 'css/popup-note.css';
+import PopupProperty from 'components/popupProperty'
 const Note = ({setShowPopup, note}) => {
   const onClick = (e) => {
     e.preventDefault()

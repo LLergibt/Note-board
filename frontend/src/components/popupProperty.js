@@ -1,6 +1,6 @@
 import React from 'react';
-import './popup-note.css';
-import PropertyItem from './propertyItem'
+import 'css/popup-note.css';
+import PropertyItem from 'components/propertyItem'
 
 const PopupProperty = ({property}) => {
         return (

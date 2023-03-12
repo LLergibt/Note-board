@@ -1,5 +1,5 @@
 import React from 'react';
-import './itemNote.css'
+import 'css/itemNote.css'
 
 const PropertyItem = ({property}) => {
   return (

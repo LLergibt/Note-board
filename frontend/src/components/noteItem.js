@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import './itemNote.css'
-import Note from './note'
+import 'css/itemNote.css'
+import Note from 'components/note'
 import PropertyItem from './propertyItem'
 
 const NoteItem = ({note}) => {

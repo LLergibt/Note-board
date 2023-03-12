@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import './itemNote.css'
-import NoteItem from './noteItem'
+import 'css/itemNote.css'
+import NoteItem from 'components/noteItem'
 import axios from 'axios'
 
 const NoteItems = () => {
