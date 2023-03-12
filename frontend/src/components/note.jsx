@@ -1,6 +1,7 @@
 import React from 'react';
 import './popup-note.css';
-const Note = ({setShowPopup}) => {
+import PopupProperty from './popupProperty'
+const Note = ({setShowPopup, note}) => {
   const onClick = (e) => {
     e.preventDefault()
     setShowPopup((prev) => {
@@ -11,34 +12,12 @@ const Note = ({setShowPopup}) => {
     <div className="popup-container" onClick={onClick}>
       <div className="popup">
       <h1 className="title">
-        CSS для попапа заявления сборников
+        {note.title}
       </h1>
       <div className="main-modal">
-        <div className="property">
-        <button className="note-property" >
-          Статус
-        </button>
-        <button className="note-property">
-          <p>
-          В процессе
-          </p>
-        </button>
-      </div>
-        <div className="property">
-          <button className="note-property title">
-          Область
-        </button>
-        <button className="note-property data">
-          <p>
-           frontend
-          </p>
-        </button>
-        </div>
-      <div className="property">
-        <button className="note-property data">
-          Добавить свойство
-        </button>
-      </div>
+        {note.properties.map((property, idx) => 
+          <PopupProperty key={idx} property={property}/>
+        )}
       <div className="comment">
         <p>
         Добавить коментарий

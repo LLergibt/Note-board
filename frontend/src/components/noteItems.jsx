@@ -1,32 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './itemNote.css'
-import Note from './note'
+import NoteItem from './noteItem'
+import axios from 'axios'
 
 const NoteItems = () => {
-  const [showPopup, setShowPopup] = useState(false)
-  const onClick = (e) => {
-    e.preventDefault()
-    setShowPopup((prev) => {
-      return !prev
-    })
-  }
+  const [notes, setNotes] = useState()
+  useEffect(() => {
+    axios.get('/notes/?board=1').then((response) => {setNotes(response.data)})
+  }, [])
   return (
     <>
-    <div className="noteItem" onClick={onClick}>
-      <h1>
-      CSS для попапа заявления сборников
-      </h1>
-      <p className="status">
-        HOT
-      </p>
-      <p className="note-detail area">
-        Frontend
-      </p>
-      <p className="note-detail responser">
-        Гоша
-      </p>
-    </div>
-    {showPopup && <Note setShowPopup={setShowPopup}/>}
+    {notes && notes?.map((note) => 
+      <NoteItem key={note.title} note={note}/>)}
     </>
     
   )
