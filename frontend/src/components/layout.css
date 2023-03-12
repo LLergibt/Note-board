@@ -1,6 +1,3 @@
-@import url('https://css.gg/chevron-double-left-r.css');
-@import url('https://css.gg/menu.css');
-@import url('https://css.gg/chevron-double-right-r.css');
 .container {
   display: grid;
   border: none;
@@ -36,7 +33,7 @@
 display: none;
 }
 .gg {
-  position: fixed;
+  position: absolute;
 }
 .sidebar-hidden {
 display: none;
