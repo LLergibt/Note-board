@@ -45,13 +45,28 @@ button:hover {
 .header {
   display: grid;
   grid-area: header;
-  grid-template-columns: 1fr 1fr 150px ;
+  grid-template-columns: 1fr 1fr 150px;
   border-bottom: 2px solid gray;
-  grid-template-rows: 10% 30%;
-  grid-template-areas: 
-        "button . ."
-        "title . share"
+  grid-template-rows: 15% 30% 55%;
 
+  grid-template-areas: 
+        ". . ."
+        "title . share"
+        "filters filters filters"
+
+}
+.filters {
+  grid-area: filters;
+  display: grid;
+  grid-template-rows: 50% 45%;
+  grid-template-columns: 1fr 1fr 110px;
+  grid-template-areas: 
+      ". . ."
+      ". . share"
+}
+.filters .share {
+  grid-area: share;
+  
 }
 .header h1 {
   grid-area: title;
@@ -63,7 +78,8 @@ button:hover {
   color: white;
   font-size: .9em;
   font-weight: bold;
-  border: none;
+  border: 1px solid blue;
+  border-radius: 2px;
   margin-right: 5%;
 }
 .content {
@@ -87,7 +103,7 @@ button:hover {
     grid-template-rows: 25% 25%;
     gap: 10px;
     grid-template-areas: 
-          "button title ."
+          ". title ."
           ". . share";
   }
   .header h1 {

@@ -22,7 +22,6 @@ const Layout = () => {
 
       </div>
       <div className="header">
-
         <h1>
           Askarate.moscow
         </h1>
@@ -30,6 +29,11 @@ const Layout = () => {
         <button className="share">
           Поделиться
         </button>
+        <div className="filters">
+        <button className="share">
+          Создать
+        </button>
+        </div>
 
     </div>
     <div className="content">
