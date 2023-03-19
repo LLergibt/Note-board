@@ -1,5 +1,5 @@
 import express from 'express'
-import {boardCreate} from '../db/board.js'
+import {boardCreate, getProperties} from '../db/board.js'
 
 export const board = express.Router();
 
@@ -7,5 +7,11 @@ board.post('/', async (req, res) => {
   await boardCreate(req.body)
   res.status(201)
   res.send('succeed')
+
+})
+board.get('/properties/', async (req, res) => {
+  const properties = await getProperties(req.query.board_id)
+  res.status(200)
+  res.json(properties)
 
 })
