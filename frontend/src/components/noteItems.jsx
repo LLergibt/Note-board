@@ -11,7 +11,7 @@ const NoteItems = () => {
   return (
     <>
     {notes && notes?.map((note) => 
-      <NoteItem key={note.title} note={note}/>)}
+      <NoteItem key={note.id} note={note}/>)}
     </>
     
   )

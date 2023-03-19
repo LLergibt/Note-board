@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useContext, createContext} from 'react'
 import {Outlet} from 'react-router-dom';
 import 'css/layout.css'
 import { useState } from 'react'
+import {PopupCreateNote} from 'components/popup/createNote'
+
 const Layout = () => {
   const [hidden, setHidden] = useState(false);
+  const [createNotePopup, setCreateNotePopup] = useState(false);
   const onClick = (e) => {
     e.preventDefault()
     console.log('gg')
@@ -11,7 +14,6 @@ const Layout = () => {
       return !prev
     })
   }
-  console.log(hidden)
   return (
     <>
     <button  className={'gg'} onClick={onClick}>
@@ -30,13 +32,14 @@ const Layout = () => {
           Поделиться
         </button>
         <div className="filters">
-        <button className="share">
+          <button className="share" onClick={() => {setCreateNotePopup(true)}}>
           Создать
         </button>
         </div>
 
     </div>
     <div className="content">
+      {createNotePopup && <PopupCreateNote createNotePopup={createNotePopup} onClickOutside={() => {setCreateNotePopup(false)}}/>}
       <Outlet/>
     </div>
 

@@ -1,16 +1,15 @@
 import React from 'react';
 import 'css/popup-note.css';
 import PopupProperty from 'components/popupProperty'
-const Note = ({setShowPopup, note}) => {
-  const onClick = (e) => {
-    e.preventDefault()
-    setShowPopup((prev) => {
-      return !prev
-    })
-  }
+import {useRef, useContext } from 'react';
+import {useClickOutside} from 'hooks/useClickOutside'
+const Note = ({onClickOutside, note}) => {
+  const ref = useRef(null);
+  useClickOutside(onClickOutside, ref)
+
   return (
-    <div className="popup-container" onClick={onClick}>
-      <div className="popup">
+    <div className="popup-container">
+      <div ref={ref} className="popup">
       <h1 className="title">
         {note.title}
       </h1>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import 'css/itemNote.css'
-import Note from 'components/note'
+import Note from 'components/popup/note'
 import PropertyItem from './propertyItem'
 
 const NoteItem = ({note}) => {
@@ -23,7 +23,7 @@ const NoteItem = ({note}) => {
       )}
 
     </div>
-    {showPopup && <Note setShowPopup={setShowPopup} note={note}/>}
+    {showPopup && <Note onClickOutside={() => {setShowPopup(false)}} note={note}/>}
     </>
     
   )
