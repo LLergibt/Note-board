@@ -14,7 +14,7 @@ export const propertyCreate = async (body) => {
   return property
 }
 export const notesGet = async (boardId) => {
-  const [notesRaw, metadata] = await sequelize.query(`SELECT n.id, n.title, ARRAY_AGG(json_build_object('property_title', pt.title, 'property_data', pn.property_data, 'property_id', pn.property_id)) as properties  FROM note n JOIN property_note pn ON n.id = pn.note_id JOIN  property_title pt ON pt.id = pn.property_id WHERE n.board_id = ${boardId} GROUP BY n.id
+  const [notesRaw, metadata] = await sequelize.query(`SELECT n.id, n.title, ARRAY_AGG(json_build_object('property_title', p.property_title, 'property_data', pn.property_data, 'property_id', pn.property_id)) as properties  FROM note n JOIN property_note pn ON n.id = pn.note_id JOIN  property p ON p.id = pn.property_id WHERE n.board_id = ${boardId} GROUP BY n.id
 `)
   return notesRaw
 }

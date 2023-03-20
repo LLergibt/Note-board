@@ -4,7 +4,7 @@ import {Types, Boards} from './board.js'
 
 
 export const PropertyTitle = sequelize.define(
-  'property_title',
+  'property',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,7 +19,7 @@ export const PropertyTitle = sequelize.define(
         key: 'id'
       }
     },
-    title: {
+    property_title: {
       type: DataTypes.STRING,
     },
     board_id: {

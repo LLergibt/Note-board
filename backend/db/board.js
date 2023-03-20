@@ -6,7 +6,7 @@ export const boardCreate = async (body) => {
     return board
 }
 export const getProperties = async (boardId) => {
-  const [data, metadata] = await sequelize.query(`select * from property_title where board_id=${boardId}`)
+  const [data, metadata] = await sequelize.query(`select * from property where board_id=${boardId}`)
   return data
 }
 
