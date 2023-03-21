@@ -1,12 +1,21 @@
 import React, {useContext, createContext} from 'react'
 import {Outlet} from 'react-router-dom';
 import 'css/layout.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {PopupCreateNote} from 'components/popup/createNote'
+import axios from 'axios'
 
 const Layout = () => {
   const [hidden, setHidden] = useState(false);
   const [createNotePopup, setCreateNotePopup] = useState(false);
+  useEffect(() => {
+    if (createNotePopup) {
+      axios.post('notes/', {
+        board_id: 1
+      }).then(console.log('succeed'))
+    }
+
+  }, [createNotePopup])
   const onClick = (e) => {
     e.preventDefault()
     console.log('gg')
