@@ -3,6 +3,13 @@ import {Note, PropertyTitle, PropertyNote} from '../models/notes.js'
 
 export const noteCreate = async (body) => {
   const note = await Note.create(body)
+  const [properties, metadata] = await sequelize.query(`SELECT * FROM property WHERE board_id = ${body.board_id}
+  `)
+  properties.map((property) => {
+    PropertyNote.create({note_id: note.id, property_id: property.id, property_data: ''})
+  })
+
+
   return note
 }
 export const propertyNoteCreate = async (body) => {

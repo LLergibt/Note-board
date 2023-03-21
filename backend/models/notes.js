@@ -21,6 +21,7 @@ export const PropertyTitle = sequelize.define(
     },
     property_title: {
       type: DataTypes.STRING,
+      defaultValue: "Без названия",
     },
     board_id: {
       type: DataTypes.INTEGER,
@@ -47,6 +48,7 @@ export const Note = sequelize.define(
     },
     title: {
       type: DataTypes.STRING,
+      defaultValue: "Без названия",
     },
     board_id: {
       type: DataTypes.INTEGER,
