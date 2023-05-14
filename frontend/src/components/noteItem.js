@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import 'css/itemNote.css'
 import Note from 'components/popup/note'
 import PropertyItem from './propertyItem'
+import {useHandleNote} from 'hooks/useHandleNote'
 
 const NoteItem = ({note}) => {
   //const [showPopup, setShowPopup] = useState(false)
   const [showPopup, setShowPopup] = useState(false)
+  const {addNoteInContext} = useHandleNote()
   const onClick = (e) => {
     e.preventDefault()
+    addNoteInContext(note)
     setShowPopup((prev) => {
       return !prev
     })
@@ -18,12 +21,9 @@ const NoteItem = ({note}) => {
       <p className="title">
       {note.title}
       </p>
-      {note.properties.map((property, idx) => 
-        <PropertyItem key={idx} property={property}/>
-      )}
 
     </div>
-    {showPopup && <Note onClickOutside={() => {setShowPopup(false)}} note={note}/>}
+    {showPopup && <Note onClickOutside={() => {setShowPopup(false)}}/>}
     </>
     
   )

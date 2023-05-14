@@ -3,15 +3,9 @@ import 'css/popup-note.css';
 import {useRef} from 'react'
 import PropertyItem from 'components/propertyItem'
 
-const onSubmit = (event, property) => {
- event.preventDefault()
- console.log(property.ref.current.value)
- console.log(property.name)
-}
-const PopupProperty = ({property}) => {
+const PopupProperty = ({property, onSubmit}) => {
        const title = useRef('')
        const data = useRef('')
-       console.log(property)
 
         return (
           <div className="property">

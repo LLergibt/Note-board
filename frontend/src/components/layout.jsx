@@ -2,17 +2,27 @@ import React, {useContext, createContext} from 'react'
 import {Outlet} from 'react-router-dom';
 import 'css/layout.css'
 import { useState, useEffect } from 'react'
-import {PopupCreateNote} from 'components/popup/createNote'
+import Note from 'components/popup/note'
 import axios from 'axios'
 
+export const NoteContext = createContext()
 const Layout = () => {
   const [hidden, setHidden] = useState(false);
   const [createNotePopup, setCreateNotePopup] = useState(false);
+  const [note, setNote] = useState({title: null})
+  const onCreateNote = async() => {
+      const noteQuery = await axios.post('notes/', {
+        board_id: 1
+      })
+      const propertiesQuery = await axios.get('board/properties/?board_id=1')
+      const note = noteQuery.data
+      const properties = propertiesQuery.data
+      setNote({...note, properties: properties})
+
+  }
   useEffect(() => {
     if (createNotePopup) {
-      axios.post('notes/', {
-        board_id: 1
-      }).then(console.log('succeed'))
+      onCreateNote()
     }
 
   }, [createNotePopup])
@@ -48,8 +58,10 @@ const Layout = () => {
 
     </div>
     <div className="content">
-      {createNotePopup && <PopupCreateNote createNotePopup={createNotePopup} onClickOutside={() => {setCreateNotePopup(false)}}/>}
+      <NoteContext.Provider value={{note, setNote}}>
+      {createNotePopup && note.title !== null && <Note onClickOutside={() => {setCreateNotePopup(false)}}/>}
       <Outlet/>
+      </NoteContext.Provider>
     </div>
 
 

@@ -3,9 +3,11 @@ import 'css/popup-note.css';
 import PopupProperty from 'components/popupProperty'
 import {useRef, useContext } from 'react';
 import {useClickOutside} from 'hooks/useClickOutside'
-const Note = ({onClickOutside, note}) => {
+import {useHandleNote} from 'hooks/useHandleNote'
+const Note = ({onClickOutside}) => {
   const ref = useRef(null);
   useClickOutside(onClickOutside, ref)
+  const {onSubmit, note} = useHandleNote()
 
   return (
     <div className="popup-container">
@@ -15,7 +17,7 @@ const Note = ({onClickOutside, note}) => {
       </h1>
       <div className="main-modal">
         {note.properties.map((property, idx) => 
-          <PopupProperty key={idx} property={property}/>
+          <PopupProperty key={idx} property={property} onSubmit={onSubmit}/>
         )}
       <div className="comment">
         <p>
