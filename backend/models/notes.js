@@ -19,7 +19,7 @@ export const PropertyTitle = sequelize.define(
         key: 'id'
       }
     },
-    property_title: {
+    title: {
       type: DataTypes.STRING,
       defaultValue: "Без названия",
     },
