@@ -17,6 +17,8 @@ export const propertyNoteCreate = async (body) => {
 }
 export const propertyTitleChange = async (body) => await sequelize.query(`UPDATE property SET title='${body.title}' WHERE id=${body.id}`)
 
+export const propertyDataChange = async (body) => await sequelize.query(`update property_note set property_data='${body.data}'  where property_id=${body.property_id} and note_id=${body.note_id}`)
+
 export const propertyCreate = async (body) => {
   const property = await PropertyTitle.create(body)
   return property
