@@ -15,7 +15,7 @@ const PopupProperty = ({property}) => {
             <input ref={title} defaultValue={property.property_title} className="note-property" >
             </input>
           </form>
-            <form onSubmit={event => onChangeNote(event, {id: property.property_id, data: data.current.value}, 'property_data')}>
+            <form onSubmit={event => onChangeNote(event, {property_id: property.property_id, data: data.current.value}, 'property_data')}>
           <input ref={data} defaultValue={property.property_data} className="note-property" placeholder="пустой">
           </input>
           </form>
