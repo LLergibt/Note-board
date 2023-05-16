@@ -7,7 +7,7 @@ import {useHandleNote} from 'hooks/useHandleNote'
 const Note = ({onClickOutside}) => {
   const ref = useRef(null);
   useClickOutside(onClickOutside, ref)
-  const {onSubmit, note} = useHandleNote()
+  const {note} = useHandleNote()
 
   return (
     <div className="popup-container">
@@ -17,7 +17,7 @@ const Note = ({onClickOutside}) => {
       </h1>
       <div className="main-modal">
         {note.properties.map((property, idx) => 
-          <PopupProperty key={idx} property={property} onSubmit={onSubmit}/>
+          <PopupProperty key={idx} property={property}/>
         )}
       <div className="comment">
         <p>
