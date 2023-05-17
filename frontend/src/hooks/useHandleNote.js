@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useContext } from 'react';
 import {NoteContext} from 'components/layout'
-import {RefreshContext} from 'components/noteItems'
+import {RefreshContext} from 'components/layout'
 import axios from 'axios'
 
 export const useHandleNote = () => {

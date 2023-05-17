@@ -1,23 +1,20 @@
-import React, {useState, useEffect, createContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import 'css/itemNote.css'
 import NoteItem from 'components/noteItem'
+import {RefreshContext} from 'components/layout'
 import axios from 'axios'
 
-export const RefreshContext = createContext()
 const NoteItems = () => {
   const [notes, setNotes] = useState()
-  const [reloadDataAfterPostReq, set] = useState(false)
-  const onReload = () => set(!reloadDataAfterPostReq)
+  const reloadDataAfterPostReq = useContext(RefreshContext)
   useEffect(() => {
     axios.get('/notes/?board=1').then((response) => {setNotes(response.data)})
 
   }, [reloadDataAfterPostReq])
   return (
     <>
-    <RefreshContext.Provider value={onReload}>
     {notes && notes?.map((note) => 
       <NoteItem key={note.id} note={note}/>)}
-    </RefreshContext.Provider>
     </>
     
   )
