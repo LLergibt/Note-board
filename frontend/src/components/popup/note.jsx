@@ -6,15 +6,17 @@ import {useClickOutside} from 'hooks/useClickOutside'
 import {useHandleNote} from 'hooks/useHandleNote'
 const Note = ({onClickOutside}) => {
   const ref = useRef(null);
+  const title = useRef('')
   useClickOutside(onClickOutside, ref)
-  const {note} = useHandleNote()
+  const {note, onChangeNote} = useHandleNote()
 
   return (
     <div className="popup-container">
       <div ref={ref} className="popup">
-      <h1 className="title">
-        {note.title}
-      </h1>
+        <form className="title" onSubmit={(event) => onChangeNote(event, {title: title.current.value}, 'title')}>
+        <input ref={title}  defaultValue={note.title} >
+        </input>
+        </form>
       <div className="main-modal">
         {note.properties.map((property, idx) => 
           <PopupProperty key={idx} property={property}/>

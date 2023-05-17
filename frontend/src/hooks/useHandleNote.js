@@ -7,8 +7,9 @@ export const useHandleNote = () => {
   const {note, setNote} = useContext(NoteContext)
   const onReload = useContext(RefreshContext)
 
-  const changePropertyTitle = (data) => axios.post('notes/property/change/title', data).then(() => onReload())
-  const changePropertyData = (data) => axios.post('notes/property/change/data', {...data, note_id: note.id}).then(() => onReload())
+  const changePropertyTitle = (data) => axios.post('notes/change/property/title', data).then(() => onReload())
+  const changePropertyData = (data) => axios.post('notes/change/property/data', {...data, note_id: note.id}).then(() => onReload())
+  const changeTitle = (data) => axios.post('notes/change/title', {...data, id: note.id}).then(() => onReload())
 
   const onChangeNote = (event, property, expression) => {
     event.preventDefault()
@@ -19,8 +20,8 @@ export const useHandleNote = () => {
       case 'property_data':
         changePropertyData(property)
         break
-      default:
-        console.log('')
+      case 'title':
+         changeTitle(property)
 
     }
   }
