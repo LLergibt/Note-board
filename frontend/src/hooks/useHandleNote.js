@@ -22,15 +22,22 @@ export const useHandleNote = () => {
         break
       case 'title':
          changeTitle(property)
-
     }
   }
+  const onDeleteProperty = (event, propertyId) => {
+    event.preventDefault()
+    axios.delete(`notes/property?id=${propertyId}`)
+    onReload()
+
+  }
+
   const addNoteInContext = noteItem => setNote(noteItem)
 
   return {
     note,
     onChangeNote,
-    addNoteInContext
+    addNoteInContext,
+    onDeleteProperty
   }
 
 
