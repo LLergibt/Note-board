@@ -28,6 +28,11 @@ export const propertyDataChange = async (body) => await sequelize.query(`update 
 
 export const propertyCreate = async (body) => {
   const property = await PropertyTitle.create(body)
+  const [notes, metadata] = await sequelize.query(`SELECT * FROM note WHERE board_id = ${body.board_id}
+  `)
+  notes.map((note) => {
+    PropertyNote.create({note_id: note.id, property_id: property.id, property_data: ''})
+  })
   return property
 }
 export const notesGet = async (boardId) => {
