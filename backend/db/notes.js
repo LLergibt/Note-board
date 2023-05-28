@@ -12,6 +12,12 @@ export const noteCreate = async (body) => {
   return note
 }
 export const titleChange = async (body) => await sequelize.query(`UPDATE note SET title='${body.title}' WHERE id=${body.id}`)
+
+export const deleteProperty = ({property_id, note_id}) => {
+   sequelize.query(`DELETE FROM property_note WHERE property_id=${property_id} and note_id=${note_id}`)
+   sequelize.query(`DELETE FROM property WHERE id=${property_id}`)
+}
+
 export const propertyNoteCreate = async (body) => {
   const propertyNote = await PropertyNote.create(body)
   return propertyNote
@@ -25,6 +31,7 @@ export const propertyCreate = async (body) => {
   return property
 }
 export const notesGet = async (boardId) => {
+
   const [notesRaw, metadata] = await sequelize.query(`SELECT n.id, n.title, ARRAY_AGG(json_build_object('title', p.title, 'data', pn.property_data, 'id', pn.property_id)) as properties  FROM note n JOIN property_note pn ON n.id = pn.note_id JOIN  property p ON p.id = pn.property_id WHERE n.board_id = ${boardId} GROUP BY n.id
 `)
   return notesRaw
