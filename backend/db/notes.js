@@ -13,9 +13,9 @@ export const noteCreate = async (body) => {
 }
 export const titleChange = async (body) => await sequelize.query(`UPDATE note SET title='${body.title}' WHERE id=${body.id}`)
 
-export const deleteProperty = ({property_id, note_id}) => {
-   sequelize.query(`DELETE FROM property_note WHERE property_id=${property_id} and note_id=${note_id}`)
-   sequelize.query(`DELETE FROM property WHERE id=${property_id}`)
+export const deleteProperty = (propertyId) => {
+   sequelize.query(`DELETE FROM property_note WHERE property_id=${propertyId}`)
+   sequelize.query(`DELETE FROM property WHERE id=${propertyId}`)
 }
 
 export const propertyNoteCreate = async (body) => {

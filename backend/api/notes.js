@@ -16,7 +16,7 @@ notes.post('/property-note', async function(req, res) {
 })
 
 notes.delete('/property', async function(req, res) {
-  await deleteProperty(req.body)
+  await deleteProperty(req.query.id)
   res.status(202)
   res.send('succeed')
 })
