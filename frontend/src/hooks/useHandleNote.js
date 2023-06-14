@@ -6,28 +6,27 @@ import axios from 'axios'
 export const useHandleNote = () => {
   const {note, setNote} = useContext(NoteContext)
   const onReload = useContext(RefreshContext)
+  const urlBase='notes/change'
 
-  const changePropertyTitle = (data) => axios.post('notes/change/property/title', data)
-  const changePropertyData = (data) => axios.post('notes/change/property/data', {...data, note_id: note.id})
-  const changeTitle = (data) => axios.post('notes/change/title', {...data, id: note.id})
+  const changeNote = (data, url) => axios.post(`${urlBase}/${url}`, data)
 
   const onChangeNote = (event, property, expression) => {
     event.preventDefault()
     switch(expression) {
       case 'property_title':
-        changePropertyTitle(property)
+        changeNote(property, 'property/title')
         break
       case 'property_data':
-        changePropertyData(property)
+        changeNote({...property, note_id: note.id}, 'property/data')
         break
       case 'title':
-         changeTitle(property)
+        changeNote({...property, id: note.id}, 'title')
+        break
     }
   }
   const onDeleteProperty = (event, propertyId) => {
     event.preventDefault()
     axios.delete(`notes/property?id=${propertyId}`)
-    onReload()
 
   }
 
