@@ -1,6 +1,7 @@
 import React, {useContext, createContext} from 'react'
 import {Outlet} from 'react-router-dom';
 import 'css/layout.css'
+import Header from 'components/layout/header'
 import { useState, useEffect } from 'react'
 import Note from 'components/popup/note'
 import axios from 'axios'
@@ -44,24 +45,12 @@ const Layout = () => {
       gg
     </button>
     <div className={hidden? "container hidden-sidebar": "container show-sidebar"}>
-      <div className="sidebar">sidebar
-
+      <div className="sidebar">
+       some sidebar
       </div>
-      <div className="header">
-        <h1>
-          Askarate.moscow
-        </h1>
 
-        <button className="share">
-          Поделиться
-        </button>
-        <div className="filters">
-          <button className="share" onClick={() => {setCreateNotePopup(true)}}>
-          Создать
-        </button>
-        </div>
+    <Header onClickNoteButton={() => setCreateNotePopup(true)}/>
 
-    </div>
     <div className="content">
       <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
       <NoteContext.Provider value={{note, setNote}}>
