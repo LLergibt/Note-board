@@ -16,7 +16,7 @@ const PopupProperty = ({property}) => {
                 <TitleChange property={property} onClickOutside={() => setTitleChangePopup(false)}/>
                 : 
                 <button className="note-property" onClick={() => setTitleChangePopup(true)} > {property.title} </button>}
-            <form onSubmit={event => onChangeNote(event, {property_id: property.id, data: data.current.value}, 'property_data')}>
+            <form onSubmit={event => onChangeNote(event, {id: property.id, data: data.current.value}, 'property_data')}>
           <input ref={data} defaultValue={property.data} className="note-property" placeholder="пустой">
           </input>
           </form>

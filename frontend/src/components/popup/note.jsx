@@ -8,7 +8,8 @@ const Note = ({onClickOutside}) => {
   const ref = useRef(null);
   const title = useRef('')
   useClickOutside(onClickOutside, ref)
-  const {note, onChangeNote} = useHandleNote()
+  const {note, properties, onChangeNote} = useHandleNote()
+  console.log(properties)
 
   return (
     <div className="popup-container">
@@ -18,7 +19,7 @@ const Note = ({onClickOutside}) => {
         </input>
         </form>
       <div className="main-modal">
-        {note.properties.map((property, idx) => 
+        {properties.map((property, idx) => 
           <PopupProperty key={idx} property={property}/>
         )}
       <div className="comment">

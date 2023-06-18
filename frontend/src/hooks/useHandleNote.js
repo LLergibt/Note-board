@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef, useContext } from 'react';
-import {NoteContext} from 'components/layout'
+import {NoteContext, PropertyContext} from 'components/layout'
 import {RefreshContext} from 'components/layout'
 import axios from 'axios'
 
 export const useHandleNote = () => {
   const {note, setNote} = useContext(NoteContext)
+  const {properties, setProperties} = useContext(PropertyContext)
+
   const onReload = useContext(RefreshContext)
   const urlBase='notes/change'
 
@@ -14,6 +16,7 @@ export const useHandleNote = () => {
     event.preventDefault()
     switch(expression) {
       case 'property_title':
+        console.log(property)
         changeNote(property, 'property/title')
         break
       case 'property_data':
@@ -31,11 +34,14 @@ export const useHandleNote = () => {
   }
 
   const addNoteInContext = noteItem => setNote(noteItem)
+  const addPropertiesInContext = properties => setProperties(properties)
 
   return {
     note,
+    properties,
     onChangeNote,
     addNoteInContext,
+    addPropertiesInContext,
     onDeleteProperty
   }
 

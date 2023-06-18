@@ -7,11 +7,13 @@ import Note from 'components/popup/note'
 import axios from 'axios'
 
 export const NoteContext = createContext()
+export const PropertyContext = createContext()
 export const RefreshContext = createContext()
 const Layout = () => {
   const [hidden, setHidden] = useState(false);
   const [createNotePopup, setCreateNotePopup] = useState(false);
   const [note, setNote] = useState({title: null})
+  const [properties, setProperties] = useState([])
 
   const [reloadDataAfterPostReq, set] = useState(false)
   const onReload = () => set(!reloadDataAfterPostReq)
@@ -20,10 +22,13 @@ const Layout = () => {
       const noteQuery = await axios.post('notes/', {
         board_id: 1
       })
-      const propertiesQuery = await axios.get('board/properties/?board_id=1')
       const note = noteQuery.data
+      const propertiesQuery = await axios.get(`notes/properties_of_note/?note_id=${note.id}`)
       const properties = propertiesQuery.data
-      setNote({...note, properties: properties})
+      console.log(properties)
+
+      setNote(note)
+      setProperties(properties)
 
   }
   useEffect(() => {
@@ -53,10 +58,12 @@ const Layout = () => {
 
     <div className="content">
       <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
+      <PropertyContext.Provider value={{properties, setProperties}}>
       <NoteContext.Provider value={{note, setNote}}>
       {createNotePopup && note.title !== null && <Note onClickOutside={() => {setCreateNotePopup(false)}}/>}
       <Outlet/>
       </NoteContext.Provider>
+      </PropertyContext.Provider>
       </RefreshContext.Provider>
     </div>
 

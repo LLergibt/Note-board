@@ -8,11 +8,11 @@ const TitleChange = ({property, onClickOutside}) => {
   useClickOutside(onClickOutside, ref)
   return (
     <div ref={ref} className="note-property">
-    <form onSubmit={event => onChangeNote(event, {id: property.id, title: title.current.value}, 'property_title')}>
+    <form onSubmit={event => onChangeNote(event, {property_id: property.property_id, title: title.current.value}, 'property_title')}>
            <input ref={title} defaultValue={property.title} className="note-property" >
            </input>
      </form>
-     <button onClick={event => onDeleteProperty(event, property.id)}>
+     <button onClick={event => onDeleteProperty(event, property.property_id)}>
        Удалить
      </button>
 
