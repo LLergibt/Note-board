@@ -88,7 +88,7 @@ export const PropertyNote = sequelize.define(
         key: 'id'
       }
     },
-    property_data: {
+    data: {
       type: DataTypes.STRING,
     },
   }
