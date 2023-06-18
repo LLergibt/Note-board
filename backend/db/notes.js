@@ -22,9 +22,9 @@ export const propertyNoteCreate = async (body) => {
   const propertyNote = await PropertyNote.create(body)
   return propertyNote
 }
-export const propertyTitleChange = async (body) => await sequelize.query(`UPDATE property SET title='${body.title}' WHERE id=${body.id}`)
+export const propertyTitleChange = async (body) => await sequelize.query(`UPDATE property SET title='${body.title}' WHERE id=${body.property_id}`)
 
-export const propertyDataChange = async (body) => await sequelize.query(`update property_note set property_data='${body.data}'  where property_id=${body.property_id} and note_id=${body.note_id}`)
+export const propertyDataChange = async (body) => await sequelize.query(`update property_note set data='${body.data}' where id=${body.id}`)
 
 export const propertyCreate = async (body) => {
   const property = await PropertyTitle.create(body)
@@ -37,8 +37,16 @@ export const propertyCreate = async (body) => {
 }
 export const notesGet = async (boardId) => {
 
-  const [notesRaw, metadata] = await sequelize.query(`SELECT n.id, n.title, ARRAY_AGG(json_build_object('title', p.title, 'data', pn.property_data, 'id', pn.property_id)) as properties  FROM note n LEFT JOIN property_note pn ON n.id = pn.note_id LEFT JOIN  property p ON p.id = pn.property_id WHERE n.board_id = ${boardId} GROUP BY n.id
-`)
-  console.log(notesRaw)
+  const [notesRaw, metadata] = await sequelize.query(`SELECT id, title FROM note WHERE board_id = ${boardId}`)
   return notesRaw
+}
+export const getPropertiesNote = async (noteId) => {
+  const [notesRaw, metadata] = await sequelize.query(`select pn.id, pn.data , p.title, note_id from property_note pn left join property p on p.id = pn.property_id where note_id=${noteId}`)
+  return notesRaw
+
+}
+export const propertiesGet = async (boardId) => {
+
+  const [properties, metadata] = await sequelize.query(`SELECT pn.id, pn.data, p.title, note_id, pn.property_id FROM property_note pn LEFT JOIN property p ON p.id = pn.property_id`)
+  return properties
 }

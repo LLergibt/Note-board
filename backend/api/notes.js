@@ -1,5 +1,5 @@
 import express from 'express'
-import {noteCreate, propertyCreate, notesGet, titleChange, propertyNoteCreate, propertyTitleChange, propertyDataChange,  deleteProperty} from '../db/notes.js'
+import {noteCreate, propertyCreate, notesGet, propertiesGet, getPropertiesNote,  titleChange, propertyNoteCreate, propertyTitleChange, propertyDataChange,  deleteProperty} from '../db/notes.js'
 
 export const notes = express.Router();
 
@@ -43,6 +43,16 @@ notes.get('/', async function(req, res) {
   const notes = await notesGet(req.query.board)
   res.status(200)
   res.json(notes)
+})
+notes.get('/properties', async function(req, res) {
+  const properties = await propertiesGet(req.query.board)
+  res.status(200)
+  res.json(properties)
+})
+notes.get('/properties_of_note', async function(req, res) {
+  const properties = await getPropertiesNote(req.query.note_id)
+  res.status(200)
+  res.json(properties)
 })
 
 notes.post('/property', async function(req, res) {
