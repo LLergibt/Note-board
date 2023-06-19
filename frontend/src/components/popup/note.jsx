@@ -8,7 +8,8 @@ const Note = ({onClickOutside}) => {
   const ref = useRef(null);
   const title = useRef('')
   useClickOutside(onClickOutside, ref)
-  const {note, properties, onChangeNote} = useHandleNote()
+  const {note, properties, onChangeNote, addProperty} = useHandleNote()
+  console.log(properties)
 
   return (
     <div className="popup-container">
@@ -21,6 +22,9 @@ const Note = ({onClickOutside}) => {
         {properties.map((property, idx) => 
           <PopupProperty key={idx} property={property}/>
         )}
+          <button className="note-property" onClick={(event) => addProperty(event)}>
+          Добавить свойство
+        </button>
       <div className="comment">
         <p>
         Добавить коментарий

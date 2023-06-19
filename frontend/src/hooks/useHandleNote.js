@@ -30,8 +30,13 @@ export const useHandleNote = () => {
   const onDeleteProperty = (event, propertyId) => {
     event.preventDefault()
     axios.delete(`notes/property?id=${propertyId}`)
-
   }
+
+  const addProperty = (event, boardId=1) => {
+    event.preventDefault()
+    axios.post('notes/property', {type_id: 1, board_id: boardId} )
+  }
+
 
   const addNoteInContext = noteItem => setNote(noteItem)
   const addPropertiesInContext = properties => setProperties(properties)
@@ -42,7 +47,8 @@ export const useHandleNote = () => {
     onChangeNote,
     addNoteInContext,
     addPropertiesInContext,
-    onDeleteProperty
+    onDeleteProperty,
+    addProperty
   }
 
 
