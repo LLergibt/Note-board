@@ -3,20 +3,18 @@ import 'css/itemNote.css'
 import Note from 'components/popup/note'
 import PropertyItem from './propertyItem'
 import {useHandleNote} from 'hooks/useHandleNote'
+import {usePopup} from 'hooks/usePopup'
 
 const NoteItem = ({note, properties}) => {
   //const [showPopup, setShowPopup] = useState(false)
-  const [showPopup, setShowPopup] = useState(false)
+  const {isPopup, hidePopup, showPopup} = usePopup()
   const {addNoteInContext, addPropertiesInContext} = useHandleNote()
   const noteProperties = properties? properties.filter(property => property.note_id === note.id): []
-  console.log(noteProperties)
   const onClick = (e) => {
     e.preventDefault()
     addNoteInContext(note)
     addPropertiesInContext(noteProperties)
-    setShowPopup((prev) => {
-      return !prev
-    })
+    showPopup()
   }
   return (
     <>
@@ -28,7 +26,8 @@ const NoteItem = ({note, properties}) => {
 )}
 
     </div>
-    {showPopup && <Note onClickOutside={() => {setShowPopup(false)}}/>}
+    {isPopup && <Note onClickOutside={() => hidePopup()}/>
+    }
     </>
     
   )

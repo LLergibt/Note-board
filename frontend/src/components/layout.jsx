@@ -5,13 +5,13 @@ import Header from 'components/layout/header'
 import { useState, useEffect } from 'react'
 import Note from 'components/popup/note'
 import axios from 'axios'
+import {usePopup} from 'hooks/usePopup'
 
 export const NoteContext = createContext()
 export const PropertyContext = createContext()
 export const RefreshContext = createContext()
 const Layout = () => {
   const [hidden, setHidden] = useState(false);
-  const [createNotePopup, setCreateNotePopup] = useState(false);
   const [note, setNote] = useState({title: null})
   const [properties, setProperties] = useState([])
 
@@ -25,18 +25,14 @@ const Layout = () => {
       const note = noteQuery.data
       const propertiesQuery = await axios.get(`notes/properties_of_note/?note_id=${note.id}`)
       const properties = propertiesQuery.data
-      console.log(properties)
 
       setNote(note)
       setProperties(properties)
 
   }
-  useEffect(() => {
-    if (createNotePopup) {
-      onCreateNote()
-    }
 
-  }, [createNotePopup])
+  const {isPopup, showPopup, hidePopup} = usePopup(onCreateNote)
+
   const onClick = (e) => {
     e.preventDefault()
     console.log('gg')
@@ -54,14 +50,14 @@ const Layout = () => {
        some sidebar
       </div>
 
-    <Header onClickNoteButton={() => setCreateNotePopup(true)}/>
+    <Header onClickNoteButton={() => {showPopup()}}/>
 
     <div className="content">
       <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
       <PropertyContext.Provider value={{properties, setProperties}}>
       <NoteContext.Provider value={{note, setNote}}>
-      {createNotePopup && note.title !== null && <Note onClickOutside={() => {setCreateNotePopup(false)}}/>}
-      <Outlet/>
+        {isPopup && note.title !== null && <Note onClickOutside={() => hidePopup()}/>}
+        <Outlet/>
       </NoteContext.Provider>
       </PropertyContext.Provider>
       </RefreshContext.Provider>
