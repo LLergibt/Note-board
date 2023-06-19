@@ -9,7 +9,6 @@ const Note = ({onClickOutside}) => {
   const title = useRef('')
   useClickOutside(onClickOutside, ref)
   const {note, properties, onChangeNote} = useHandleNote()
-  console.log(properties)
 
   return (
     <div className="popup-container">
