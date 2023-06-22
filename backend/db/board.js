@@ -11,4 +11,8 @@ export const getProperties = async (boardId) => {
   const [data, metadata] = await sequelize.query(`select * from property where board_id=${boardId}`)
   return data
 }
+export const getTypes = async () => {
+  const [types, metadata] = await sequelize.query(`SELECT id, title from types`)
+  return types
+}
 
