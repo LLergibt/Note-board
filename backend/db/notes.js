@@ -41,12 +41,17 @@ export const notesGet = async (boardId) => {
   return notesRaw
 }
 export const getPropertiesNote = async (noteId) => {
-  const [notesRaw, metadata] = await sequelize.query(`select pn.id, pn.data , p.title, note_id from property_note pn left join property p on p.id = pn.property_id where note_id=${noteId}`)
+  const [notesRaw, metadata] = await sequelize.query(`select pn.id, pn.data , p.title, note_id, pn.property_id, types.title as types_title, types.id as types_id from property_note pn left join property p on p.id = pn.property_id left join types ON types.id = p.type_id where note_id=${noteId}`)
   return notesRaw
+
+}
+export const getProperty = async(noteId, propertyId) => {
+  const [property, metadata] = await sequelize.query(`SELECT id, data, note_id, property_id FROM property_note WHERE note_id=${noteId} and property_id=${propertyId}`)
+  return property
 
 }
 export const propertiesGet = async (boardId) => {
 
-  const [properties, metadata] = await sequelize.query(`SELECT pn.id, pn.data, p.title, note_id, pn.property_id FROM property_note pn LEFT JOIN property p ON p.id = pn.property_id`)
+  const [properties, metadata] = await sequelize.query(`SELECT pn.id, pn.data, p.title, note_id, pn.property_id, types.title as types_title, types.id as types_id FROM property_note pn LEFT JOIN property p ON p.id = pn.property_id left join types ON types.id = p.type_id`)
   return properties
 }
