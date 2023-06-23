@@ -1,5 +1,4 @@
 import React from 'react';
-import 'css/popup-note.css';
 import PopupProperty from 'components/popupProperty'
 import {useRef, useContext } from 'react';
 import {useClickOutside} from 'hooks/useClickOutside'
