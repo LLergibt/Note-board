@@ -5,7 +5,7 @@ const PropertyItem = ({property}) => {
   return (
     <>
       <p className="status">
-        {property.property_data}
+        {property.data}
       </p>
     </>
     
