@@ -41,17 +41,21 @@ const Layout = () => {
   }
   return (
     <>
-    <button  className={'gg'} onClick={onClick}>
-      gg
-    </button>
-    <div className>
-      <div className="sidebar">
+    <div className='grid grid-cols-8'>
+      <div className={hidden? "invisible": "col-span-1 top-0 left-0 inset-y-0 h-screen bg-violet-500 mr-0"}>
+        <div className={hidden ? "visible": ""}>
+        <button  className="" onClick={onClick}>
+          gg
+        </button>
+        </div>
        some sidebar
       </div>
 
+    <div className = {hidden? "col-span-8" : "col-span-7"}>
     <Header onClickNoteButton={() => {showPopup()}}/>
 
-    <div className="content">
+
+    <div className="">
       <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
       <PropertyContext.Provider value={{properties, setProperties}}>
       <NoteContext.Provider value={{note, setNote}}>
@@ -60,6 +64,7 @@ const Layout = () => {
       </NoteContext.Provider>
       </PropertyContext.Provider>
       </RefreshContext.Provider>
+    </div>
     </div>
 
 

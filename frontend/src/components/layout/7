@@ -1,0 +1,22 @@
+import React from 'react'
+
+const Header = ({onClickNoteButton}) => {
+  return (
+      <div className="flex mx-auto justify-space">
+        <h1 className="">
+          Askarate.moscow
+        </h1>
+
+        <button className="btn btn-blue">
+          Поделиться
+        </button>
+        <div className=" flex-grow">
+          <button className="" onClick={onClickNoteButton}>
+          Создать
+        </button>
+        </div>
+
+    </div>
+  )
+}
+export default Header
