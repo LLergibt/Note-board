@@ -17,8 +17,8 @@ const NoteItem = ({note, properties}) => {
   }
   return (
     <>
-    <div className="noteItem" onClick={onClick}>
-      <p className="title">
+    <div className="" onClick={onClick}>
+      <p className="text-lg">
       {note.title}
       </p>
       {noteProperties.map((property) => <PropertyItem key={property.id} property={property}/>
