@@ -17,7 +17,7 @@ const NoteItem = ({note, properties}) => {
   }
   return (
     <>
-    <div className="" onClick={onClick}>
+    <div className=" border-2	my-5 w-48 rounded border-black" onClick={onClick}>
       <p className="text-lg">
       {note.title}
       </p>
