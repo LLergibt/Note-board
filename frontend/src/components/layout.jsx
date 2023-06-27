@@ -1,6 +1,5 @@
 import React, {useContext, createContext} from 'react'
 import {Outlet} from 'react-router-dom';
-import 'css/layout.css'
 import Header from 'components/layout/header'
 import { useState, useEffect } from 'react'
 import Note from 'components/popup/note'

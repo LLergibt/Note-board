@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useContext} from 'react';
-import 'css/itemNote.css'
 import NoteItem from 'components/noteItem'
 import {RefreshContext} from 'components/layout'
 import axios from 'axios'

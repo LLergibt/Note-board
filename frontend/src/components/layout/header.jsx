@@ -1,5 +1,4 @@
 import React from 'react'
-import 'css/layout.css'
 
 const Header = ({onClickNoteButton}) => {
   return (

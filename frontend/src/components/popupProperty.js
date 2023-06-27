@@ -1,5 +1,4 @@
 import React from 'react';
-import 'css/popup-note.css';
 import {useRef, useState} from 'react'
 import PropertyItem from 'components/propertyItem'
 import TitleChange from 'components/popup/titleChange'

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import 'css/itemNote.css'
 import Note from 'components/popup/note'
 import PropertyItem from './propertyItem'
 import {useHandleNote} from 'hooks/useHandleNote'
