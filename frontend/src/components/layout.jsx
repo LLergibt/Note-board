@@ -45,7 +45,7 @@ const Layout = () => {
     <button  className={'gg'} onClick={onClick}>
       gg
     </button>
-    <div className={hidden? "container hidden-sidebar": "container show-sidebar"}>
+    <div className>
       <div className="sidebar">
        some sidebar
       </div>
