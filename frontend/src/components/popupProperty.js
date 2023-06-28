@@ -11,13 +11,13 @@ const PopupProperty = ({property}) => {
        const {showPopup, hidePopup, isPopup} = usePopup()
        return (
 
-          <div className="property">
+          <div className="flex">
             {isPopup ? 
                 <TitleChange property={property} onClickOutside={() => hidePopup()}/>
                 : 
                 <button className="note-property" onClick={() => showPopup()} > {property.title} </button>}
             <form onSubmit={event => onChangeNote(event, {id: property.id, data: data.current.value}, 'property_data')}>
-          <input ref={data} defaultValue={property.data} className="note-property" placeholder="пустой">
+          <input ref={data} defaultValue={property.data} className="ml-12" placeholder="пустой">
           </input>
           </form>
         </div>
