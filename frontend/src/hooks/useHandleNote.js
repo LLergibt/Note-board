@@ -7,7 +7,7 @@ import axios from 'axios'
 export const useHandleNote = () => {
   const {note, setNote} = useContext(NoteContext)
   const {properties, setProperties} = useContext(PropertyContext)
-  const {addPropertyInState, changeDataInState, changePropertyTitleInState, removePropertyFromState} = useUpdateItem(properties, setProperties)
+  const {addPropertyInState, changeDataInState, changePropertyTitleInState, removePropertyFromState, changeTypeProperty} = useUpdateItem(properties, setProperties)
   
 
   const onReload = useContext(RefreshContext)
@@ -29,6 +29,10 @@ export const useHandleNote = () => {
       case 'title':
         changeNote({...property, id: note.id}, 'title')
         break
+      case 'type':
+        changeNote(property, 'property/type')
+        changeTypeProperty(property.id, {id: property.type_id, title: property.type_title})
+        break
     
     }
   }
@@ -47,6 +51,7 @@ export const useHandleNote = () => {
     
 
   }
+
 
 
   const addNoteInContext = noteItem => setNote(noteItem)

@@ -27,10 +27,19 @@ export const useUpdateItem = (stateList, setStateList) => {
     list.splice(index, 1);
     setStateList(list)
   }
+  const changeTypeProperty = (propertyId, type) => {
+    const list = [...stateList]
+    const index = list.findIndex((item) => item.property_id === propertyId)
+    list[index].types_title = type.title
+    list[index].types_id = type.id
+    setStateList(list)
+  }
+
   return {
       addPropertyInState,
       changeDataInState,
       changePropertyTitleInState,
-      removePropertyFromState
+      removePropertyFromState,
+      changeTypeProperty
   }
 }
