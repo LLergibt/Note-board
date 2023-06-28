@@ -7,7 +7,7 @@ import {QueryTypes} from 'sequelize'
 
 
 const createTables = async () => {
-  const gg = await sequelize.query("SELECT  COUNT(table_name) FROM information_schema.tables WHERE table_name = 'users' ", { type: QueryTypes.SELECT })
+  const gg = await sequelize.query("SELECT  COUNT(table_name) FROM information_schema.tables WHERE table_name = 'types' ", { type: QueryTypes.SELECT })
   if (gg[0].count !== '1') {
     await sequelize.sync()
     await createTypes()
