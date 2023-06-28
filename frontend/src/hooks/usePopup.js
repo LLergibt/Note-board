@@ -4,6 +4,7 @@ export const usePopup = (intermediateFunction = () => null) => {
 
   const showPopup = () => setPopup(true)
   const hidePopup = () => setPopup(false)
+  const changePopupByCall = () => setPopup((prev) => {return !prev}) 
 
   useEffect(() => {
     if (isPopup) {
@@ -15,6 +16,8 @@ export const usePopup = (intermediateFunction = () => null) => {
   return {
     isPopup,
     showPopup,
-    hidePopup
+    hidePopup,
+    changePopupByCall
+
   }
 }
