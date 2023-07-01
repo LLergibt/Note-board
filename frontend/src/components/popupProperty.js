@@ -11,15 +11,12 @@ const PopupProperty = ({property}) => {
        const {showPopup, hidePopup, isPopup} = usePopup()
        return (
 
-          <div className="flex justify-between">
+         <div className="flex justify-between">
             <div className="">
               <button className="" onClick={() => showPopup()}>  {property.title} </button>
             {isPopup ? <TitleChange className="" property={property} onClickOutside={() => hidePopup()}/>: ''}
             </div>
-            <form onSubmit={event => onChangeNote(event, {id: property.id, data: data.current.value}, 'property_data')}>
-              <input className={isPopup? "invisible": ""} ref={data} defaultValue={property.data} placeholder="пустой">
-            </input>
-          </form>
+            <PropertyItem property={property}/>
         </div>
         )
 }
