@@ -12,7 +12,7 @@ export const getProperties = async (boardId) => {
   return data
 }
 export const getTypes = async () => {
-  const [types, metadata] = await sequelize.query(`SELECT id, title from types`)
+  const [types, metadata] = await sequelize.query(`SELECT id, title, category from types`)
   return types
 }
 
