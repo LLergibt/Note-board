@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Note from 'components/popup/note'
-import PropertyItem from './propertyItem'
 import {useHandleNote} from 'hooks/useHandleNote'
 import {usePopup} from 'hooks/usePopup'
 
@@ -21,7 +20,11 @@ const NoteItem = ({note, properties}) => {
       <p className="text-lg text-center">
       {note.title}
       </p>
-      {noteProperties.map((property) => <PropertyItem key={property.id} property={property}/>
+      {noteProperties.map((property) => (
+      <p key={property.id} className="ml-4">
+        {property.data}
+      </p>
+      )
 )}
 
     </div>
