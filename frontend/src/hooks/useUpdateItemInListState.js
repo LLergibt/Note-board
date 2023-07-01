@@ -32,7 +32,10 @@ export const useUpdateItem = (stateList, setStateList) => {
     const index = list.findIndex((item) => item.property_id === propertyId)
     list[index].types_title = type.title
     list[index].types_id = type.id
+    list[index].types_category = type.category
+    console.log(list)
     setStateList(list)
+
   }
 
   return {
