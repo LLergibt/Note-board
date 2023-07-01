@@ -71,6 +71,7 @@ export const PropertyNote = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
+      unique: true
     },
     property_id: {
       type: DataTypes.INTEGER,
@@ -105,9 +106,11 @@ export const Choose = sequelize.define(
     },
     title: {
       type: DataTypes.STRING,
+      primaryKey: true,
     },
     property_id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       references: {
         model: PropertyTitle,
         key: 'id'
@@ -117,5 +120,37 @@ export const Choose = sequelize.define(
 
   {
     timestamps: false
+}
+)
+
+export const ChoosePropertyNote = sequelize.define(
+  'choose_property_note',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    property_note_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: PropertyNote,
+        key: 'id'
+      }
+  },
+    choose_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: Choose,
+        key: 'id'
+      }
   }
+  },
+
+  {
+    timestamps: false
+}
 )
