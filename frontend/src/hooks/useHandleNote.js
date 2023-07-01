@@ -31,9 +31,11 @@ export const useHandleNote = () => {
         break
       case 'type':
         changeNote(property, 'property/type')
-        changeTypeProperty(property.id, {id: property.type_id, title: property.type_title})
+        changeTypeProperty(property.id, {id: property.type_id, title: property.type_title, category: property.type_category})
         break
-    
+      case 'choice':
+        changeNote(property, 'property/type/choose')
+        break
     }
   }
   const onDeleteProperty = (event, propertyId, onClickOutside) => {
@@ -47,6 +49,7 @@ export const useHandleNote = () => {
     event.preventDefault()
     const property = await axios.post('notes/property', {type_id: 1, board_id: boardId}).then((response) => response.data)
     const propertyNote = await axios.get(`notes/property-note/?note_id=${note.id}&property_id=${property.id}`).then((response) => response.data[0])
+
     addPropertyInState({...propertyNote, title: property.title})
     
 
