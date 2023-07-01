@@ -33,6 +33,9 @@ export const Types = sequelize.define(
     },
     title: {
       type: DataTypes.STRING,
+    },
+    category: {
+      type: DataTypes.STRING
     }
   },
   {
