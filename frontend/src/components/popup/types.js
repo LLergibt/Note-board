@@ -22,7 +22,7 @@ const Types = ({propertyId}) => {
       </h1>
     <ul className="flex flex-col">
       {types && types.map((type, idx) => 
-        <button key={idx} onClick={(e) => {onChangeNote(e, {id: propertyId, type_id: type.id, type_title: type.title}, 'type')}} className="text-start pl-4 hover:bg-violet-400 hover:text-white" >{type.title}</button>
+        <button key={idx} onClick={(e) => {onChangeNote(e, {id: propertyId, type_id: type.id, type_title: type.title, type_category: type.category}, 'type')}} className="text-start pl-4 hover:bg-violet-400 hover:text-white" >{type.title}</button>
       )
       }
     </ul>
