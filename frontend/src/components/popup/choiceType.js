@@ -3,7 +3,7 @@ import {useContext} from 'react'
 import {useClickOutside} from 'hooks/useClickOutside'
 import {useHandleNote} from 'hooks/useHandleNote'
 import {usePopup} from 'hooks/usePopup'
-import SelectChoiceType from 'components/propertyTypes/selectChoiceType'
+import SelectChoiceType from 'components/popup/selectChoiceType'
 import {PropertyNoteContext} from 'components/propertyTypes/chooseType'
 import axios from 'axios'
 
