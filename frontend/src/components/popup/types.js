@@ -16,7 +16,7 @@ const Types = ({propertyId}) => {
 
   return (
     <>
-      <div className="shadow-2xl h-1/2 self-end bg-white border rounded-sm py-3 w-64  font-light text-base">
+    <div className="shadow-2xl self-end bg-white border rounded-sm py-3 w-64  font-light text-base">
       <h1 className="text-base  border-b pl-4 pb-4 mb-4 font-bold text-gray-900 dark:text-white">
          Изменить тип свойства
       </h1>

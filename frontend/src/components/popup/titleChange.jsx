@@ -11,7 +11,7 @@ const TitleChange = ({property, onClickOutside}) => {
   useClickOutside(onClickOutside, ref)
   return (
     <>
-    <div ref={ref} className="h-32 flex">
+    <div ref={ref} className="absolute h-32 flex bg-white">
         <div className="flex flex-col shadow-2xl	border rounded-sm py-3 font-light text-base md:inset-0 ">
             <form onSubmit={event => onChangeNote(event, {property_id: property.property_id, title: title.current.value}, 'property_title')}>
                    <input ref={title} defaultValue={property.title} className="mx-4 p-1 m-2 border-black hover:bg-gray-300 border rounded-sm" >
@@ -25,7 +25,7 @@ const TitleChange = ({property, onClickOutside}) => {
              </button>
         </div>
 
-        <div className="h-screen z-10" >
+        <div>
           {isPopup ? <Types propertyId={property.property_id}/> : ''}
         </div>
 
