@@ -1,5 +1,5 @@
 import express from 'express'
-import {noteCreate, propertyCreate, notesGet, getProperty, propertiesGet, getPropertiesNote,  titleChange, propertyNoteCreate, chooseCreate, choosePropertyCreate, propertyTypeChange, propertyTitleChange, propertyDataChange,  deleteProperty} from '../db/notes.js'
+import {noteCreate, propertyCreate, notesGet, getProperty, propertiesGet, getPropertiesNote,  titleChange, propertyNoteCreate, chooseCreate, chooseDelete, selectChoice,  choosePropertyCreate, propertyTypeChange, propertyTitleChange, propertyDataChange,  deleteProperty, choicesGet, selectedChoicesGet} from '../db/notes.js'
 
 export const notes = express.Router();
 
@@ -31,17 +31,27 @@ notes.post('/change/property/title', async function(req, res) {
   res.send('succeed')
 
 })
+notes.delete('/choose', async function(req, res) {
+  await chooseDelete(req.query.id)
+  res.status(202)
+  res.send('succeed')
+})
 notes.post('/change/property/type', async function(req, res) {
     await propertyTypeChange(req.body)
     res.status(201)
     res.send('succeed')
 })
 notes.post('/change/property/type/choose', async function(req, res) {
-    await chooseCreate(req.body)
+    const choice = await chooseCreate(req.body)
+    res.status(201)
+    res.json(choice)
+})
+notes.post('/change/property/type/choose/select', async function(req, res) {
+    await selectChoice(req.body)
     res.status(201)
     res.send('succeed')
 })
-notes.post('/change/property/type/choose-property', async function(req, res) {
+notes.post('/change/property/type/choose/make-select', async function(req, res) {
     await choosePropertyCreate(req.body)
     res.status(201)
     res.send('succeed')
@@ -80,4 +90,14 @@ notes.post('/property', async function(req, res) {
   const property = await propertyCreate(req.body)
   res.status(201)
   res.json(property)
+})
+notes.get('/property/choices/selected', async function(req, res) {
+  const choices = await selectedChoicesGet(req.query.property_note_id)
+  res.status(200)
+  res.json(choices)
+})
+notes.get('/property/choices', async function(req, res) {
+  const choices = await choicesGet(req.query.property_id)
+  res.status(200)
+  res.json(choices)
 })
