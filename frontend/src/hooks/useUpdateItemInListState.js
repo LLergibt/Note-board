@@ -21,9 +21,9 @@ export const useUpdateItem = (stateList, setStateList) => {
     setStateList(list)
   }
 
-  const removePropertyFromState = (propertyId) =>  {
+  const removePropertyFromState = (itemId, key) =>  {
     const list = [...stateList]
-    const index = list.findIndex((item) => item.property_id === propertyId)
+    const index = list.findIndex((item) => item[key] === itemId)
     list.splice(index, 1);
     setStateList(list)
   }
