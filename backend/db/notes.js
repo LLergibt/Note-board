@@ -26,13 +26,20 @@ export const chooseDelete = async (chooseId) => {
   await sequelize.query(`DELETE FROM choose_property_note WHERE choose_id=${chooseId}`)
   await sequelize.query(`DELETE FROM choose WHERE id=${chooseId}`)
 }
+export const deleteSelectedChoice = async (id) => {
+  await sequelize.query(`DELETE FROM choose_property_note WHERE id=${id}`)
+
+}
 export const selectChoice = async (body) => {
   const choice = await sequelize.query(`UPDATE choose_property_note SET choose_id=${body.choose_id} WHERE property_note_id=${body.property_note_id}`)
   return choice
 }
 
 export const choosePropertyCreate = async (body) => {
-  ChoosePropertyNote.create({property_note_id: body.property_note_id, choose_id: body.choose_id})
+  await ChoosePropertyNote.create({property_note_id: body.property_note_id, choose_id: body.choose_id})
+  //const [choices, metadata] = await sequelize.query(`select choose_property_note.id, title, choose_id, property_note_id from choose_property_note left join choose on choose.id = choose_property_note.choose_id where choose_property_note.property_note_id=${body.property_note_id}`)
+
+  //return choices
 }
 
 export const propertyNoteCreate = async (body) => {
@@ -75,13 +82,12 @@ export const propertiesGet = async (boardId) => {
   return properties
 }
 export const selectedChoicesGet = async (propertyNoteId) => {
-  const [choices, metadata] = await sequelize.query(`SELECT title, choose_id, property_note_id FROM choose_property_note LEFT JOIN choose on choose.id = choose_property_note.choose_id WHERE choose_property_note.property_note_id=${propertyNoteId}`)
+  const [choices, metadata] = await sequelize.query(`select choose_property_note.id, title, choose_id, property_note_id from choose_property_note left join choose on choose.id = choose_property_note.choose_id where choose_property_note.property_note_id=${propertyNoteId}`)
 
   return choices
 }
 export const choicesGet = async (propertyId) => {
   const [choices, metadata] = await sequelize.query(`select * from choose where property_id=${propertyId}`)
   return choices
-
 }
 
