@@ -23,7 +23,6 @@ const ChoiceTypePopup = ({onClickOutside, property}) => {
     showPopup()
   }, [])
   useEffect(() => {
-    console.log(selectedChoices)
     if (option === '') {
       inputReference.current.focus()
     }
@@ -31,14 +30,11 @@ const ChoiceTypePopup = ({onClickOutside, property}) => {
 
   useClickOutside(onClickOutside, ref)
   return (
-      <div ref={ref} className="p-0 pl-6  m-0">
+      <div ref={ref} className="p-0 pl-6  py-1 m-0">
       <form onSubmit={(event) => onCreateChoice(event, {title: option, property_id: property.property_id, property_note_id: property.id}, 'choice')}>
-      <input ref={inputReference} autoFocus onChange={handleChange} className={option? '': ""}>
+        <input ref={inputReference} autoFocus placeholder={selectedChoices?.title} onChange={handleChange} className={option? '': ""} onClick={changePopupByCall}>
       </input>
       </form>
-      <button className={option ? "z-10 absolute bottom-6 m-0 p-0 opacity-0 top-20 my-1" : "absolute opacity-25 top-20 my-1"} onClick={changePopupByCall}>
-        {selectedChoices? selectedChoices.title: "Пустой"}
-      </button>
 
 
   {isPopup && <SelectChoiceType newOption={option}/>}

@@ -2,17 +2,17 @@ import React from 'react'
 import {useRef, createContext, useEffect, useState} from 'react'
 import {useHandleNote} from 'hooks/useHandleNote'
 import {usePopup} from 'hooks/usePopup'
-import ChoiceTypePopup from 'components/popup/choiceType'
+import SelectedChoice from 'components/popup/selectedChoice'
 import axios from 'axios'
+import MaterialIcon, {colorPalette} from 'material-icons-react';
 
 export const SelectedChoicesContext  = createContext()
 export const PropertyNoteIdContext  = createContext()
 export const ChoicesContext  = createContext()
+
 const ChooseType = ({property}) => {
-  const data = useRef()
   const [selectedChoices, setSelectedChoices] = useState()
   const [choices, setChoices] = useState()
-  console.log(selectedChoices, 'gg')
 
   useEffect(() => {
     if (!selectedChoices) {
@@ -27,16 +27,7 @@ const ChooseType = ({property}) => {
     <PropertyNoteIdContext.Provider value={{propertyNoteId: property.id}}>
     <SelectedChoicesContext.Provider value={{selectedChoices, setSelectedChoices}}>
     <ChoicesContext.Provider value={{choices, setChoices}}>
-    <div className="w-64">
-      {isPopup ?  <ChoiceTypePopup property={property} onClickOutside={hidePopup}/>: 
-      <button className="text-start  pl-6" onClick={showPopup}>
-
-          <span className="text-gray-400">
-          {selectedChoices? selectedChoices.title : 'пустой'}
-          </span>
-    </button>
-          }
-  </div>
+      <SelectedChoice property={property}/>
   </ChoicesContext.Provider>
   </SelectedChoicesContext.Provider>
   </PropertyNoteIdContext.Provider>
