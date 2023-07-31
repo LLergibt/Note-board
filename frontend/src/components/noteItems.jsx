@@ -15,10 +15,10 @@ const NoteItems = () => {
 
   }, [reloadDataAfterPostReq])
   return (
-    <>
+    <div className="flex flex-wrap w-full">
     {notes && notes.map((note) => 
       <NoteItem key={note.id} note={note} properties={properties}/>)}
-    </>
+    </div>
     
   )
 }
