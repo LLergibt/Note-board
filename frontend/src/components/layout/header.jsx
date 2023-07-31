@@ -13,8 +13,28 @@ const Header = ({onClickNoteButton}) => {
         </button>
         </div>
 
-        <div className="place-self-end p-1 text-white bg-violet-500 w-20 rounded text-center">
-          <button className="" onClick={onClickNoteButton}>
+
+        <div className="place-self-end w-3/5 flex justify-between p-1 text-white   rounded text-center">
+          <button className="w-24 h-7 text-gray-500 hover:bg-gray-200" onClick={onClickNoteButton}>
+            Свойства
+        </button>
+
+          <button className="w-auto h-7 px-2 text-gray-500 hover:bg-gray-200" onClick={onClickNoteButton}>
+            Сгруппировать по: 
+            <span className="pl-2 text-black">
+              Статус
+            </span>
+        </button>
+
+          <button className="w-auto h-7 px-2 text-gray-500 hover:bg-gray-200" onClick={onClickNoteButton}>
+            Фильтр
+        </button>
+
+          <button className="w-auto h-7 px-2 text-gray-500 hover:bg-gray-200" onClick={onClickNoteButton}>
+            Сортировать
+        </button>
+
+          <button className="w-auto h-7  px-3 rounded bg-violet-500" onClick={onClickNoteButton}>
           Создать
         </button>
         </div>
