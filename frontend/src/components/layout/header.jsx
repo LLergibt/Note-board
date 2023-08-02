@@ -1,4 +1,6 @@
 import React from 'react'
+import ButtonPopupTemplate from 'components/buttonPopupTemplate'
+import Properties from 'components/popup/sorts/properties'
 
 const Header = ({onClickNoteButton}) => {
   return (
@@ -15,10 +17,7 @@ const Header = ({onClickNoteButton}) => {
 
 
         <div className="place-self-end w-3/5 flex justify-between p-1 text-white   rounded text-center">
-          <button className="w-24 h-7 text-gray-500 hover:bg-gray-200" onClick={onClickNoteButton}>
-            Свойства
-        </button>
-
+          <ButtonPopupTemplate textButton={'Свойства'} Popup={Properties}/>
           <button className="w-auto h-7 px-2 text-gray-500 hover:bg-gray-200" onClick={onClickNoteButton}>
             Сгруппировать по: 
             <span className="pl-2 text-black">
