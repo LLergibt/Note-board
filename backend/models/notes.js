@@ -40,7 +40,6 @@ export const PropertyTitle = sequelize.define(
 export const Note = sequelize.define(
   'note',
   {
-    timestamps: false,
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -60,12 +59,11 @@ export const Note = sequelize.define(
       }
 
     },
-    created_at: Sequelize.DATE,
-    updated_at: Sequelize.DATE
+    createdAt: {type: Sequelize.DATE, field: 'created_at'},
+    updatedAt: {type: Sequelize.DATE, field: 'updated_at'},
 
   }, {
-    updatedAt: 'updated_at',
-    createdAt: 'created_at'
+    timestamps: true
   }
 )
 export const PropertyNote = sequelize.define(

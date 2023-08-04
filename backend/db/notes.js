@@ -1,5 +1,6 @@
 import sequelize from '../models/dbConnect.js'
 import {Note, PropertyTitle, PropertyNote, Choose, ChoosePropertyNote} from '../models/notes.js'
+import {SortsProperty} from '../models/sorts.js'
 
 export const noteCreate = async (body) => {
   const note = await Note.create(body)
@@ -13,18 +14,30 @@ export const noteCreate = async (body) => {
 }
 export const titleChange = async (body) => await sequelize.query(`UPDATE note SET title='${body.title}' WHERE id=${body.id}`)
 
-export const deleteProperty = (propertyId) => {
+export const deleteProperty = async (propertyId) => {
+   await deleteChooseByPropertyId(propertyId)
    sequelize.query(`DELETE FROM property_note WHERE property_id=${propertyId}`)
    sequelize.query(`DELETE FROM property WHERE id=${propertyId}`)
+}
+const deleteChooseByPropertyId = async (propertyId) => {
+  const [choices, metadata] = await sequelize.query(`SELECT id from choose where property_id=${propertyId}`)
+  //const sequelize.query(`DELETE FROM property_note WHERE property_id=${propertyId}`)
+  if (choices.length !== 0) {
+    choices.map((choice) => {
+      chooseDelete(choice.id)
+    })
+
+  }
+
 }
 
 export const chooseCreate = async (body) => {
   const choose = await Choose.create({title: body.title, property_id: body.property_id})
   return choose
 }
-export const chooseDelete = async (chooseId) => {
-  await sequelize.query(`DELETE FROM choose_property_note WHERE choose_id=${chooseId}`)
-  await sequelize.query(`DELETE FROM choose WHERE id=${chooseId}`)
+export const chooseDelete = (chooseId) => {
+  sequelize.query(`DELETE FROM choose_property_note WHERE choose_id=${chooseId}`)
+  sequelize.query(`DELETE FROM choose WHERE id=${chooseId}`)
 }
 export const deleteSelectedChoice = async (id) => {
   await sequelize.query(`DELETE FROM choose_property_note WHERE id=${id}`)
@@ -54,8 +67,10 @@ export const propertyTypeChange = async(body) => await sequelize.query(`UPDATE p
 
 export const propertyCreate = async (body) => {
   const property = await PropertyTitle.create(body)
+  console.log(body, property)
   const [notes, metadata] = await sequelize.query(`SELECT * FROM note WHERE board_id = ${body.board_id}
   `)
+
   notes.map((note) => {
     PropertyNote.create({note_id: note.id, property_id: property.id, property_data: ''})
   })
@@ -71,8 +86,8 @@ export const getPropertiesNote = async (noteId) => {
   return notesRaw
 
 }
-export const getProperty = async(noteId, propertyId) => {
-  const [property, metadata] = await sequelize.query(`SELECT pn.id, pn.data, pn.note_id, pn.property_id, types.category as types_category FROM property_note pn LEFT JOIN property p ON p.id = pn.property_id left join types ON types.id = p.type_id WHERE note_id=${noteId} and property_id=${propertyId}`)
+export const getProperty = async (noteId, propertyId) => {
+  const [property, metadata] = await sequelize.query(`SELECT pn.id, pn.data, pn.note_id, pn.property_id, types.title as types_title, types.id as types_id, types.category as types_category FROM property_note pn LEFT JOIN property p ON p.id = pn.property_id left join types ON types.id = p.type_id WHERE note_id=${noteId} and property_id=${propertyId}`)
   return property
 
 }

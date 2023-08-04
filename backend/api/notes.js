@@ -70,8 +70,8 @@ notes.post('/change/property/type/choose/make-select', async function(req, res) 
     res.status(201)
 })
 
-notes.get('/property-note', function(req, res) {
-  const property = getProperty(req.query.note_id, req.query.property_id)
+notes.get('/property-note', async function(req, res) {
+  const property = await getProperty(req.query.note_id, req.query.property_id)
   res.status(200)
   res.json(property)
 })
