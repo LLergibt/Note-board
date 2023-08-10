@@ -41,6 +41,7 @@ const Layout = () => {
   }
   return (
     <>
+    <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
     <div className='grid grid-cols-8'>
       <div className={hidden? "invisible": "col-span-1 top-0 left-0 inset-y-0 h-screen bg-violet-500 mr-0"}>
         <div className={hidden ? "visible": ""}>
@@ -56,19 +57,18 @@ const Layout = () => {
 
 
     <div className="">
-      <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
       <PropertyContext.Provider value={{properties, setProperties}}>
       <NoteContext.Provider value={{note, setNote}}>
         {isPopup && note.title !== null && <Note onClickOutside={() => hidePopup()}/>}
         <Outlet/>
       </NoteContext.Provider>
       </PropertyContext.Provider>
-      </RefreshContext.Provider>
     </div>
     </div>
 
 
     </div>
+    </RefreshContext.Provider>
     </>
   )
 }
