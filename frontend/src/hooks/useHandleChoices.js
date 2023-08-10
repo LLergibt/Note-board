@@ -17,16 +17,12 @@ export const useHandleChoices = () => {
 
   const sendData = async (choice, url) => axios.post(`${urlBase}/${url}`, choice)
 
-  useEffect(() => {
-  }, [selectedChoices])
 
 
   const onCreateChoice = async (event, choice) => {
     event.preventDefault()
-    console.log(choice)
     const newChoice = await sendData({title: choice.title, property_id: choice.property_id}, '')
     const choiceData = newChoice.data
-    console.log(choiceData)
     selectChoice(choiceData)
     //console.log(choiceData)
     setChoices((prev) => {return [...prev, choiceData]})
@@ -39,13 +35,14 @@ export const useHandleChoices = () => {
 
     }
   const selectChoice = async (choice) => {
+    const body = {choose_id: choice.id, property_note_id: propertyNoteId, title: choice.title}
     if (selectedChoices) {
-       const newChoice = await sendData({choose_id: choice.id, property_note_id: propertyNoteId}, 'select')
+       const newChoice = await sendData(body, 'select')
        setSelectedChoices(newChoice.data[0])
       //getSelectedChoice()
        }
     else {
-      const newChoice = await sendData({choose_id: choice.id, property_note_id: propertyNoteId}, 'make-select')
+      const newChoice = await sendData(body, 'make-select')
       setSelectedChoices(newChoice.data[0])
       //getSelectedChoice()
       //getSelectedChoice()
@@ -64,13 +61,11 @@ export const useHandleChoices = () => {
     
   }
   const deleteSelectedChoice = async () => {
-    console.log(selectedChoices)
     await axios.delete(`notes/choose/selected?id=${selectedChoices.id}`)
     setSelectedChoices()
 
   }
   const deleteSelectedChoiceFromState = () => {
-    console.log('deleting')
     setSelectedChoices()
   }
   const isSelected = (choiceId) => {
