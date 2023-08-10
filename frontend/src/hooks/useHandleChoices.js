@@ -1,5 +1,4 @@
 import {SelectedChoicesContext} from 'components/propertyTypes/chooseType'
-import {useUpdateItem} from 'hooks/useUpdateItemInListState'
 import {useHandleNote} from 'hooks/useHandleNote'
 import {ChoicesContext} from 'components/propertyTypes/chooseType'
 import {PropertyNoteIdContext} from 'components/propertyTypes/chooseType'
@@ -10,8 +9,7 @@ export const useHandleChoices = () => {
   const {selectedChoices, setSelectedChoices} = useContext(SelectedChoicesContext)
   const {propertyNoteId} = useContext(PropertyNoteIdContext)
   const {choices, setChoices} = useContext(ChoicesContext)
-  const {removePropertyFromState} = useUpdateItem(choices, setChoices)
-  //const {getPropertyNoteById} = useHandleNote()
+  const {refreshNote} = useHandleNote()
 
   const urlBase='notes/change/property/type/choose'
 
@@ -53,7 +51,7 @@ export const useHandleChoices = () => {
   const deleteChoice = async (choice) => {
     //console.log(choice)
     await axios.delete(`notes/choose?id=${choice.id}`)
-    removePropertyFromState(choice.id, "id")
+    refreshNote()
 
     selectedChoices && isSelected(choice.id) && deleteSelectedChoiceFromState()
     //deleteSelectedChoiceFromState()
