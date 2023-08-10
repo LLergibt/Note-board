@@ -1,6 +1,6 @@
 import {Outlet} from 'react-router-dom';
 import Header from 'components/layout/header'
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 import Note from 'components/popup/note'
 import {usePopup} from 'hooks/usePopup'
 import {useNote} from 'contexts/NoteProvider'
