@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {RefreshContext} from 'components/layout'
-import {useContext} from 'react'
+import {useRefresh} from 'contexts/RefreshProvider'
 export const useSorting = () => {
-  const onReload = useContext(RefreshContext)
+  const {onReload} = useRefresh()
   const onToggleProperty = async (data) => {
     await axios.post('notes/change/property/toggle', data)
     onReload()

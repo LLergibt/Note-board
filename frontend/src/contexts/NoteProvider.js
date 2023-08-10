@@ -1,6 +1,6 @@
 import React, {useContext, useState, createContext} from 'react'
 import axios from 'axios'
-import {RefreshContext} from 'components/layout'
+import {useRefresh} from 'contexts/RefreshProvider'
 
 const NoteContext = createContext()
 
@@ -20,7 +20,7 @@ const NoteProvider = ({ children }) => {
       setProperties(properties)
   }
 
-  const onReload = useContext(RefreshContext)
+  const onReload = useRefresh()
   const urlBase='notes/change'
   const refreshNote = async () => {
     const response = await axios.get(`/notes/properties_of_note/?note_id=${note.id}`)

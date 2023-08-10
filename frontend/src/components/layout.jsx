@@ -5,13 +5,10 @@ import Note from 'components/popup/note'
 import {usePopup} from 'hooks/usePopup'
 import {useNote} from 'contexts/NoteProvider'
 
-export const RefreshContext = createContext()
 const Layout = () => {
   const [hidden, setHidden] = useState(false);
   const {note, onCreateNote} = useNote()
 
-  const [reloadDataAfterPostReq, set] = useState(false)
-  const onReload = () => set(!reloadDataAfterPostReq)
 
 
   const {isPopup, showPopup, hidePopup} = usePopup(onCreateNote)
@@ -24,7 +21,6 @@ const Layout = () => {
   }
   return (
     <>
-    <RefreshContext.Provider value={reloadDataAfterPostReq, onReload}>
     <div className='grid grid-cols-8'>
       <div className={hidden? "invisible": "col-span-1 top-0 left-0 inset-y-0 h-screen bg-violet-500 mr-0"}>
         <div className={hidden ? "visible": ""}>
@@ -47,7 +43,6 @@ const Layout = () => {
 
 
     </div>
-    </RefreshContext.Provider>
     </>
   )
 }

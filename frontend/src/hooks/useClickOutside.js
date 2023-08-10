@@ -1,8 +1,8 @@
 import { useEffect, useContext} from 'react';
-import {RefreshContext} from 'components/layout'
+import {useRefresh} from 'contexts/RefreshProvider'
 
 export const useClickOutside = (onClickOutside, ref) => {
-  const onReload = useContext(RefreshContext)
+  const {onReload} = useRefresh()
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
