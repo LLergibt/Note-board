@@ -30,6 +30,10 @@ export const PropertyTitle = sequelize.define(
         key: 'id'
       }
 
+    },
+    is_toggled: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     }
   },
   {

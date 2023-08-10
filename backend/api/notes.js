@@ -1,5 +1,5 @@
 import express from 'express'
-import {noteCreate, propertyCreate, notesGet, getProperty, propertiesGet, getPropertiesNote,  deleteSelectedChoice, titleChange, propertyNoteCreate, chooseCreate, chooseDelete, selectChoice,  choosePropertyCreate, propertyTypeChange, propertyTitleChange, propertyDataChange,  deleteProperty, choicesGet, selectedChoicesGet} from '../db/notes.js'
+import {noteCreate, propertyCreate, notesGet, getProperty, propertiesGet, getPropertiesNote,  deleteSelectedChoice, titleChange, propertyNoteCreate, chooseCreate, chooseDelete, selectChoice,  choosePropertyCreate, propertyTypeChange, propertyTitleChange, propertyDataChange,  propertyToggle, deleteProperty, choicesGet, selectedChoicesGet} from '../db/notes.js'
 
 export const notes = express.Router();
 
@@ -10,23 +10,29 @@ notes.post('/', async function(req, res) {
 })
 
 notes.post('/property-note', async function(req, res) {
-  propertyNoteCreate(req.body)
+  await propertyNoteCreate(req.body)
   res.status(201)
   res.send('succeed')
 })
 
 notes.delete('/property', async function(req, res) {
-  deleteProperty(req.query.id)
+  await deleteProperty(req.query.id)
   res.status(202)
   res.send('succeed')
 })
 notes.post('/change/title', async function(req, res) {
-  titleChange(req.body)
+  await titleChange(req.body)
   res.status(201)
   res.send('succeed')
 })
 notes.post('/change/property/title', async function(req, res) {
-  propertyTitleChange(req.body)
+  await propertyTitleChange(req.body)
+  res.status(201)
+  res.send('succeed')
+
+})
+notes.post('/change/property/toggle', async function(req, res) {
+  await propertyToggle(req.body)
   res.status(201)
   res.send('succeed')
 
@@ -47,7 +53,7 @@ notes.get('/date', async function(req, res) {
   res.json(date)
 })
 notes.post('/change/property/type', async function(req, res) {
-    propertyTypeChange(req.body)
+    await propertyTypeChange(req.body)
     res.status(201)
     res.send('succeed')
 })
@@ -72,8 +78,8 @@ notes.post('/change/property/type/choose/make-select', async function(req, res) 
 
 notes.get('/property-note', async function(req, res) {
   const property = await getProperty(req.query.note_id, req.query.property_id)
-  res.status(200)
   res.json(property)
+  res.status(200)
 })
 
 notes.post('/change/property/data', async function(req, res) {
