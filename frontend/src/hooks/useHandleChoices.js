@@ -1,15 +1,17 @@
 import {SelectedChoicesContext} from 'components/propertyTypes/chooseType'
-import {useHandleNote} from 'hooks/useHandleNote'
+import {useNote} from 'contexts/NoteProvider'
 import {ChoicesContext} from 'components/propertyTypes/chooseType'
 import {PropertyNoteIdContext} from 'components/propertyTypes/chooseType'
 import {useContext, useEffect} from 'react'
+import {RefreshContext} from 'components/layout'
 import axios from 'axios'
 
 export const useHandleChoices = () => {
   const {selectedChoices, setSelectedChoices} = useContext(SelectedChoicesContext)
   const {propertyNoteId} = useContext(PropertyNoteIdContext)
   const {choices, setChoices} = useContext(ChoicesContext)
-  const {refreshNote} = useHandleNote()
+  const onReload = useContext(RefreshContext)
+  
 
   const urlBase='notes/change/property/type/choose'
 
@@ -51,15 +53,15 @@ export const useHandleChoices = () => {
   const deleteChoice = async (choice) => {
     //console.log(choice)
     await axios.delete(`notes/choose?id=${choice.id}`)
-    refreshNote()
+    onReload()
 
-    selectedChoices && isSelected(choice.id) && deleteSelectedChoiceFromState()
     //deleteSelectedChoiceFromState()
 
     
   }
   const deleteSelectedChoice = async () => {
     await axios.delete(`notes/choose/selected?id=${selectedChoices.id}`)
+    onReload()
     setSelectedChoices()
 
   }
