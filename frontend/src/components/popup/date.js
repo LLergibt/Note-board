@@ -1,6 +1,6 @@
 import React from 'react'
 import {useRef, useState} from 'react'
-import {useHandleNote} from 'hooks/useHandleNote'
+import {useNote} from 'contexts/NoteProvider'
 import {useClickOutside} from 'hooks/useClickOutside'
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
@@ -8,7 +8,7 @@ import Calendar from 'react-calendar';
 
 const DatePopup = ({ property, onClickOutside }) => {
   const ref = useRef()
-  const {onChangeNote} = useHandleNote()
+  const {onChangeNote} = useNote()
   useClickOutside(onClickOutside, ref)
   const [date, setDate] = useState(property.data ? new Date(property.data) : new Date());
   const handleDate = (newDate) => {

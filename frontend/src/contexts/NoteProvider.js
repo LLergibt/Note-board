@@ -1,12 +1,24 @@
-import { useEffect, useState, useRef, useContext } from 'react';
-import {NoteContext, PropertyContext} from 'components/layout'
-import {RefreshContext} from 'components/layout'
+import React, {useContext, useState, createContext} from 'react'
 import axios from 'axios'
+import {RefreshContext} from 'components/layout'
 
-export const useHandleNote = () => {
-  const {note, setNote} = useContext(NoteContext)
-  const {properties, setProperties} = useContext(PropertyContext)
-  
+const NoteContext = createContext()
+
+const NoteProvider = ({ children }) => {
+  const [note, setNote] = useState()
+  const [properties, setProperties] = useState()
+
+  const onCreateNote = async() => {
+      const noteQuery = await axios.post('notes/', {
+        board_id: 1
+      })
+      const note = noteQuery.data
+      const propertiesQuery = await axios.get(`notes/properties_of_note/?note_id=${note.id}`)
+      const properties = propertiesQuery.data
+
+      setNote(note)
+      setProperties(properties)
+  }
 
   const onReload = useContext(RefreshContext)
   const urlBase='notes/change'
@@ -61,8 +73,9 @@ export const useHandleNote = () => {
 
   const addNoteInContext = noteItem => setNote(noteItem)
   const addPropertiesInContext = properties => setProperties(properties)
-
-  return {
+  const value = {
+    onCreateNote, 
+    addNoteInContext,
     note,
     properties,
     onChangeNote,
@@ -70,8 +83,18 @@ export const useHandleNote = () => {
     addPropertiesInContext,
     onDeleteProperty,
     addProperty,
-    getPropertyNoteById
+    getPropertyNoteById,
+    refreshNote
   }
 
 
+
+  return (
+    <NoteContext.Provider value={value}>
+    {children}
+    </NoteContext.Provider>
+  )
 }
+
+export default NoteProvider
+export const useNote = () => useContext(NoteContext)

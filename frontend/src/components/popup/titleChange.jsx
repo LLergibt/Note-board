@@ -1,12 +1,12 @@
 import React, {useRef, useEffect} from 'react'
 import {useClickOutside} from 'hooks/useClickOutside'
-import {useHandleNote} from 'hooks/useHandleNote'
+import {useNote} from 'contexts/NoteProvider'
 import {usePopup} from 'hooks/usePopup'
 import Types from 'components/popup/types'
 const TitleChange = ({property, onClickOutside}) => {
   const ref = useRef(null);
   const title = useRef('')
-  const {onChangeNote, onDeleteProperty} = useHandleNote()
+  const {onChangeNote, onDeleteProperty} = useNote()
   const {changePopupByCall, isPopup} = usePopup()
   useClickOutside(onClickOutside, ref)
   return (

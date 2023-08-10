@@ -1,13 +1,13 @@
 import React from 'react';
 import PopupProperty from 'components/popupProperty'
-import {useRef, useContext } from 'react';
+import {useRef, useEffect, useContext } from 'react';
 import {useClickOutside} from 'hooks/useClickOutside'
-import {useHandleNote} from 'hooks/useHandleNote'
+import {useNote} from 'contexts/NoteProvider'
 const Note = ({onClickOutside}) => {
   const ref = useRef(null);
   const title = useRef('')
   useClickOutside(onClickOutside, ref)
-  const {note, properties, onChangeNote, addProperty} = useHandleNote()
+  const {note, properties, onChangeNote, addProperty} = useNote()
   //<div className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
   //   <div ref={ref} className="relative w-full max-w-2xl max-h-full">
   //     </input>

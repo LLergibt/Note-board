@@ -1,10 +1,10 @@
 import React from 'react'
-import {useRef} from 'react'
-import {useHandleNote} from 'hooks/useHandleNote'
+import {useRef, useEffect} from 'react'
+import {useNote} from 'contexts/NoteProvider'
 
 const TextType = ({ property }) => {
   const data = useRef()
-  const { onChangeNote } = useHandleNote()
+  const { onChangeNote } = useNote()
 
   return (
     <form onSubmit={(event) => {onChangeNote(event, {id: property.id, data: data.current.value}, 'property_data')}}>
