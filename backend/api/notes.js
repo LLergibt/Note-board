@@ -39,8 +39,8 @@ notes.post('/change/property/toggle', async function(req, res) {
 })
 notes.delete('/choose', async function(req, res) {
   await chooseDelete(req.query.id)
-  res.status(202)
   res.send('succeed')
+  res.status(202)
 })
 notes.delete('/choose/selected', async function(req, res) {
   await deleteSelectedChoice(req.query.id)

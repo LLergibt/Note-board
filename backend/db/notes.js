@@ -36,9 +36,9 @@ export const chooseCreate = async (body) => {
   const choose = await Choose.create({title: body.title, property_id: body.property_id})
   return choose
 }
-export const chooseDelete = (chooseId) => {
-  sequelize.query(`DELETE FROM choose_property_note WHERE choose_id=${chooseId}`)
-  sequelize.query(`DELETE FROM choose WHERE id=${chooseId}`)
+export const chooseDelete = async (chooseId) => {
+  await sequelize.query(`DELETE FROM choose_property_note WHERE choose_id=${chooseId}`)
+  await sequelize.query(`DELETE FROM choose WHERE id=${chooseId}`)
 }
 export const deleteSelectedChoice = async (id) => {
   await sequelize.query(`DELETE FROM choose_property_note WHERE id=${id}`)
