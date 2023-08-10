@@ -1,14 +1,16 @@
 import React, {useRef, useEffect, useState, useContext} from 'react'
 import {useClickOutside} from 'hooks/useClickOutside'
-import {useHandleChoices} from 'hooks/useHandleChoices'
 import {usePopup} from 'hooks/usePopup'
 import SelectChoiceType from 'components/popup/selectChoiceType'
 import {SelectedChoicesContext} from 'components/propertyTypes/chooseType'
 import axios from 'axios'
+import {useProperty} from 'contexts/PropertyProvider'
+import {useChoice} from 'contexts/ChoiceProvider'
 
-const ChoiceTypePopup = ({onClickOutside, property}) => {
+const ChoiceTypePopup = ({onClickOutside}) => {
   const [option, setOption] = useState('')
-  const {selectedChoices, onCreateChoice} = useHandleChoices()
+  const {selectedChoices, onCreateChoice} = useChoice()
+  const property = useProperty()
   const inputReference = useRef(null);
   const ref = useRef('')
   const {changePopupByCall, showPopup, isPopup} = usePopup()

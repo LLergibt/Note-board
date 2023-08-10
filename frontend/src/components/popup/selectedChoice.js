@@ -1,25 +1,19 @@
-import {SelectedChoicesContext} from 'components/propertyTypes/chooseType'
-import {ChoicesContext} from 'components/propertyTypes/chooseType'
-import {PropertyNoteIdContext} from 'components/propertyTypes/chooseType'
 import ChoiceTypePopup from 'components/popup/choiceType'
-import {useHandleChoices} from 'hooks/useHandleChoices'
-import {useContext} from 'react'
 import MaterialIcon, {colorPalette} from 'material-icons-react';
 import {usePopup} from 'hooks/usePopup'
+import {useChoice} from 'contexts/ChoiceProvider'
+import {useProperty} from 'contexts/PropertyProvider'
 
-const SelectedChoice = ({property}) => {
-  const {selectedChoices, setSelectedChoices} = useContext(SelectedChoicesContext)
-  const {propertyNoteId} = useContext(PropertyNoteIdContext)
-  const {choices, setChoices} = useContext(ChoicesContext)
-  const {deleteSelectedChoice} = useHandleChoices()
+const SelectedChoice = () => {
+  const {choices, setChoices, deleteSelectedChoice, selectedChoices, setSelectedChoices } = useChoice()
+  const property = useProperty()
 
-  console.log(selectedChoices, 'gg')
 
   const {showPopup, hidePopup, isPopup} = usePopup()
   return (
     <>
     <div className="w-64 ">
-      {isPopup ?  <ChoiceTypePopup property={property} onClickOutside={hidePopup}/>: 
+      {isPopup ?  <ChoiceTypePopup  onClickOutside={hidePopup}/>: 
       <div className="ml-3 hover:bg-gray-200 h-8 flex-nowrap flex rounded  text-center ">
 
         {selectedChoices? 

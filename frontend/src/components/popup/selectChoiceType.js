@@ -1,10 +1,10 @@
 import React, {useRef, useEffect} from 'react'
 import {usePopup} from 'hooks/usePopup'
-import {useHandleChoices} from 'hooks/useHandleChoices'
 import ChoiceItem from 'components/choiceItem'
+import {useChoice} from 'contexts/ChoiceProvider'
 
 const SelectChoiceType = ({newOption}) => {
-  const {choices, selectChoice} = useHandleChoices()
+  const {choices, selectChoice} = useChoice()
   const check =  !newOption ? choices.length === 0 && true: false
 
   return (
