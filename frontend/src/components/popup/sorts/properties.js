@@ -15,7 +15,7 @@ const Properties = ({onClickOutside}) => {
     <div ref={ref} className="absolute z-100 my-8">
     <div className="shadow-2xl w-64 h-3/4 text-black  bg-white border rounded-sm  font-extralight text-base ">
       {properties && properties.map((property) => (
-        <SortPropertyItem property={property}/>
+        <SortPropertyItem property={property} key={property.id}/>
       ))}
     </div>
     </div>
