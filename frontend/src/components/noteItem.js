@@ -3,7 +3,7 @@ import Note from 'components/popup/note'
 import {useNote} from 'contexts/NoteProvider'
 import {usePopup} from 'hooks/usePopup'
 
-const NoteItem = ({note, properties}) => {
+const NoteItem = ({note, properties, sortChoice}) => {
   //const [showPopup, setShowPopup] = useState(false)
   const {isPopup, hidePopup, showPopup} = usePopup()
 
@@ -25,7 +25,7 @@ const NoteItem = ({note, properties}) => {
       {noteProperties.map((property) => (
       property.is_toggled &&
       <p key={property.id} className={`ml-4`}>
-        {property.data}
+        {property.types_title === "choice" & !sortChoice.empty ? sortChoice.title : property.data}
       </p>
       
       )

@@ -7,8 +7,17 @@ export const useSorting = () => {
     await axios.post('notes/change/property/toggle', data)
     onReload()
   }
+  const onDeleteSortChoice = async (choiceId) => {
+    await axios.delete(`notes/choose?id=${choiceId}`)
+  }
+  const changeChoice = async(choice) => {
+    await axios.patch('notes/choose', choice)
+  }
+
   return {
-    onToggleProperty
+    onToggleProperty,
+    onDeleteSortChoice,
+    changeChoice
   }
 
 
