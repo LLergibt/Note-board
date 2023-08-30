@@ -11,6 +11,10 @@ export const getProperties = async (boardId) => {
   const [data, metadata] = await sequelize.query(`select * from property where board_id=${boardId} ORDER BY id`)
   return data
 }
+export const getPropertiesChoices = async (boardId) => {
+  const [data, metadata] = await sequelize.query(`SELECT property.id, property.title FROM property left join types ON types.id = property.type_id where board_id=${boardId} and types.title='choice' ORDER BY property.id`)
+  return data
+}
 export const getTypes = async () => {
   const [types, metadata] = await sequelize.query(`SELECT id, title, category from types`)
   return types
