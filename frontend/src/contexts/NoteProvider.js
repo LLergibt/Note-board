@@ -26,6 +26,16 @@ const NoteProvider = ({ children }) => {
     const response = await axios.get(`/notes/properties_of_note/?note_id=${note.id}`)
     setProperties(response.data)
   }
+  const loadNote = async (noteId) => {
+      const propertiesQuery = await axios.get(`notes/properties_of_note/?note_id=${noteId}`)
+      const properties = propertiesQuery.data
+
+      const noteQuery = await axios.get(`notes/by-id/?note_id=${noteId}`)
+      const note = propertiesQuery.data
+
+      setNote(note)
+      setProperties(properties)
+  }
 
   const changeNote = (data, url) => axios.post(`${urlBase}/${url}`, data).then(() => {refreshNote() })
 
@@ -34,9 +44,11 @@ const NoteProvider = ({ children }) => {
     switch(expression) {
       case 'property_title':
         changeNote(property, 'property/title')
+        refreshNote()
         break
       case 'property_data':
         changeNote({...property, note_id: note.id}, 'property/data')
+        refreshNote()
 
         //changeDataInState({...property, note_id: note.id})
         break
@@ -45,6 +57,7 @@ const NoteProvider = ({ children }) => {
         break
       case 'type':
         await changeNote(property, 'property/type')
+        refreshNote()
         break
       case 'choice':
         changeNote(property, 'property/type/choose')
@@ -84,7 +97,8 @@ const NoteProvider = ({ children }) => {
     onDeleteProperty,
     addProperty,
     getPropertyNoteById,
-    refreshNote
+    refreshNote,
+    loadNote
   }
 
 

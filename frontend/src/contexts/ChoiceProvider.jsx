@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect, createContext} from 'react'
 import axios from 'axios'
-import {useRefresh} from 'contexts/RefreshProvider'
 import {useProperty} from 'contexts/PropertyProvider'
 
 const ChoiceContext = createContext()
@@ -9,7 +8,6 @@ const ChoiceProvider = ({ children }) => {
   const [selectedChoices, setSelectedChoices] = useState()
   const [choices, setChoices] = useState()
   const property = useProperty()
-  const {onReload} = useRefresh()
 
   const loadChoices = async () => {
     await axios.get(`http://localhost:8000/notes/property/choices?property_id=${property.property_id}`).then(response => setChoices(response.data))
@@ -60,7 +58,6 @@ const ChoiceProvider = ({ children }) => {
   const deleteSelectedChoice = async () => {
     await axios.delete(`notes/choose/selected?id=${selectedChoices.id}`)
     loadChoices()
-    onReload()
     setSelectedChoices()
   }
   const deleteSelectedChoiceFromState = () => {
